@@ -1,0 +1,337 @@
+/* styles.css */
+:root {
+    --edu-primary: #4f46e5;
+    --edu-primary-light: rgba(79, 70, 229, 0.1);
+    --edu-secondary: #10b981;
+    --edu-secondary-light: rgba(16, 185, 129, 0.1);
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --bg-light: #f9fafb;
+    --border-radius: 0.5rem;
+    --transition: all 0.2s ease-in-out;
+  }
+  
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text-primary);
+    background-color: var(--bg-light);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  /* Cards */
+  .card {
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+  }
+  
+  .stats-card {
+    padding: 1.5rem;
+  }
+  
+  .stats-card__title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .stats-card__value {
+    font-size: 1.875rem;
+    font-weight: 700;
+  }
+  
+  .action-card {
+    padding: 1.5rem;
+    border: 1px solid;
+    display: block;
+  }
+  
+  .action-card__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .action-card__description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+  
+  /* Color variants */
+  .edu-primary {
+    color: var(--edu-primary);
+  }
+  
+  .edu-primary-bg {
+    background-color: var(--edu-primary-light);
+  }
+  
+  .edu-primary-border {
+    border-color: rgba(79, 70, 229, 0.2);
+  }
+  
+  .edu-secondary {
+    color: var(--edu-secondary);
+  }
+  
+  .edu-secondary-bg {
+    background-color: var(--edu-secondary-light);
+  }
+  
+  .edu-secondary-border {
+    border-color: rgba(16, 185, 129, 0.2);
+  }
+  
+  /* Hover effects */
+  .action-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Typography */
+  .heading-1 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    line-height: 2.25rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .heading-2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .text-lead {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  /* Spacing */
+  .mb-6 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .mb-8 {
+    margin-bottom: 2rem;
+  }
+  
+  .mb-10 {
+    margin-bottom: 2.5rem;
+  }
+  
+  /* Grid */
+  .grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+  
+  .grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  
+  @media (min-width: 640px) {
+    .sm\:grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .lg\:grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  /* Tabs Styles */
+.tabs-container {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tabs-list {
+  display: flex;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.tab-item {
+  position: relative;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: var(--transition);
+  border-bottom: 2px solid transparent;
+}
+
+.tab-item:hover {
+  color: var(--edu-primary);
+}
+
+.tab-item--active {
+  color: var(--edu-primary);
+  border-bottom-color: var(--edu-primary);
+}
+
+.tab-item--active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--edu-primary);
+}
+
+.tab-content {
+  padding: 1.5rem 0;
+}
+
+/* Optional: Add subtle animation for tab switching */
+@keyframes fadeIn {
+  from { opacity: 0.6; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-panel {
+  animation: fadeIn 0.2s ease-out;
+}
+/* Tabs Styles */
+.tabs-container {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tabs-list {
+  display: flex;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.tab-item {
+  position: relative;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: var(--transition);
+  border-bottom: 2px solid transparent;
+}
+
+.tab-item:hover {
+  color: var(--edu-primary);
+}
+
+.tab-item--active {
+  color: var(--edu-primary);
+  border-bottom-color: var(--edu-primary);
+}
+
+.tab-item--active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--edu-primary);
+}
+
+.tab-content {
+  padding: 1.5rem 0;
+}
+
+/* Tab panel animation */
+@keyframes fadeIn {
+  from { opacity: 0.6; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-panel {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Disabled tab style */
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+/* styles.css */
+:root {
+  --edu-primary-dark: #3730a3; /* Darkened version of edu-primary */
+}
+/* Navbar-specific styles */
+.navbar {
+  background-color: white;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.navbar-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .navbar-container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* Horizontal Tabs - Core Fixes */
+.nav-tabs {
+  display: flex;
+  flex-direction: row; /* Explicitly set to row */
+  flex-wrap: nowrap; /* Prevent wrapping */
+  gap: 1.5rem; /* Consistent spacing */
+  padding: 0;
+  margin: 1rem 0 0 0; /* Adjust for mobile */
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .nav-tabs {
+    margin: 0; /* Reset margin on desktop */
+  }
+}
+
+.nav-tabs li {
+  display: block; /* Reset list item display */
+  margin: 0; /* Remove default margins */
+  padding: 0; /* Remove default padding */
+}
+
+.nav-tabs a {
+  display: inline-block;
+  padding: 0.5rem 0;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: var(--transition);
+}
+
+.nav-tabs a:hover {
+  color: var(--edu-primary);
+}
+
+.nav-tabs .active {
+  color: var(--edu-primary);
+  border-bottom-color: var(--edu-primary);
+}
+
