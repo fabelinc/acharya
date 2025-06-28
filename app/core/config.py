@@ -3,7 +3,8 @@ from openai import OpenAI
 import os
 
 class Settings(BaseSettings):
-    app_name: str = "Expl-AI-nly"
+    API_V1_STR: str = "/api/v1"
+    app_name: str = "Aacharya"
     database_url: str
     secret_key: str
     algorithm: str = "HS256"
