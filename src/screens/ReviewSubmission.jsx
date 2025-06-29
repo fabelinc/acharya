@@ -58,7 +58,7 @@ export default function ReviewSubmission() {
             <Space direction="vertical">
               <Text strong>Q:</Text> <Text>{q.text}</Text>
               <Text strong>Expected:</Text> <Text>{q.answer}</Text>
-              <Text strong>Your Answer:</Text>{" "}
+              <Text strong>Student Answer:</Text>{" "}
               <Text type={answer === q.answer ? "success" : "danger"}>{answer}</Text>
               <Text>Hints Used: {interaction.hints_used ?? 0}</Text>
               {/* <Text>Time Spent: {submission.time_spent[q.id] ?? 0} sec</Text> */}
