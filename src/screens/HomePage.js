@@ -95,22 +95,21 @@ const LandingPage = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <Carousel autoplay effect="fade" dots={{ className: 'custom-dots' }}>
+          <Carousel autoplay effect="fade" dots>
             {heroSlides.map((slide, index) => (
-              <div
-                key={index}
-                className="relative h-[300px] sm:h-[400px] md:h-[500px] bg-black flex items-center justify-center"
-              >
-                <img
-                  src={slide.image}
-                  alt={slide.caption}
-                  className="w-full h-full object-contain sm:object-cover"
-                />
-                <div className="absolute bottom-4 w-full px-4 text-center">
-                  <div className="inline-block bg-black bg-opacity-60 px-4 py-2 sm:px-6 sm:py-3 rounded-lg max-w-xs sm:max-w-lg mx-auto">
+              <div key={index} className="relative bg-black">
+                <div className="w-full aspect-[16/9] sm:aspect-[3/1] md:aspect-[5/2] flex items-center justify-center">
+                  <img
+                    src={slide.image}
+                    alt={slide.caption}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 px-4 w-full max-w-md text-center">
+                  <div className="bg-black bg-opacity-60 px-4 py-2 rounded-md shadow-md">
                     <Title
                       level={4}
-                      className="text-white m-0 text-sm sm:text-lg leading-snug"
+                      className="text-white text-sm sm:text-lg font-medium m-0"
                     >
                       {slide.caption}
                     </Title>
@@ -120,7 +119,6 @@ const LandingPage = () => {
             ))}
           </Carousel>
         </motion.div>
-
 
         {/* Features */}
         <div className="mt-24 space-y-32">
