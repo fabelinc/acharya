@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const { Title } = Typography;
+const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 export default function TeacherSignup() {
   const navigate = useNavigate();
 
   const onFinish = async (values) => {
     try {
-      await axios.post("http://localhost:8000/api/v1/auth/signup", {
+      await axios.post(`${backendURL}/api/v1/auth/signup`, {
         email: values.email,
         password: values.password,
         name: values.name,

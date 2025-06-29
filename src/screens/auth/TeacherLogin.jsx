@@ -9,6 +9,7 @@ export default function TeacherLogin() {
   const navigate = useNavigate();
   const location = useLocation();
   const { login } = useAuthContext(); // Get login function from your auth context
+  const backendURL = process.env.REACT_APP_BACKEND_URL;
 
   const onFinish = async (values) => {
     try {
@@ -16,7 +17,7 @@ export default function TeacherLogin() {
       params.append('username', values.email);
       params.append('password', values.password);
   
-      const res = await axios.post("http://localhost:8000/api/v1/auth/login", params);
+      const res = await axios.post(`${backendURL}/api/v1/auth/login`, params);
       
       // Store token in localStorage
       localStorage.setItem('teacherToken', res.data.access_token);
