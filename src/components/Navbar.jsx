@@ -13,8 +13,8 @@ const Navbar = () => {
 
   const navItems = [
     { key: '/', label: 'Home' },
-    { key: '/teachers', label: 'Your Teaching Assistant' },
-    { key: '/about', label: 'About Us' },
+    { key: '/teachers', label: 'Teaching Assistant Hub' }
+    
   ];
 
   // Detect mobile width

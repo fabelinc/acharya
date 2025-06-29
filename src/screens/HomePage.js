@@ -123,6 +123,17 @@ const LandingPage = () => {
             © {new Date().getFullYear()} Aacharya EdTech. All rights reserved.
           </Paragraph>
         </div>
+        {/* About Us Section */}
+        <div id="about-us" className="mt-32 pt-20 border-t">
+          <Title level={2} className="text-center edu-primary mb-6">About Us</Title>
+          <Paragraph className="text-center text-lg max-w-3xl mx-auto mb-8">
+            We’re a passionate team of educators, developers, and AI researchers building the future of teaching.
+            Our mission is to empower teachers with tools that save time, deepen engagement, and scale their impact.
+          </Paragraph>
+          <Paragraph className="text-center text-sm text-gray-500">
+            Based in India and the U.S., we work closely with coaching centers and schools to co-create smarter classrooms.
+          </Paragraph>
+        </div>
       </div>
     </div>
   );
