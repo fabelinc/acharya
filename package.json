@@ -19,10 +19,10 @@
     "react-scripts": "^5.0.1"
   },
   "scripts": {
-  "start": "craco start",
-  "build": "craco build",
-  "test": "craco test"
-},
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test"
+  },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.4",
     "autoprefixer": "^10.4.16",
