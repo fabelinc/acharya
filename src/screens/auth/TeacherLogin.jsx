@@ -65,7 +65,7 @@ export default function TeacherLogin() {
           Log In
         </Button>
         <p style={{ marginTop: 16, textAlign: 'center' }}>
-          New to Expl-AI-nly?{" "}
+          New to Aacharya?{" "}
           <a href="/teacher/signup" style={{ color: '#1677ff' }}>
             Create an account
           </a>

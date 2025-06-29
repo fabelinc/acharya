@@ -34,7 +34,7 @@ const features = [
   {
     title: 'Scalable Support for Every Learner',
     description:
-      'Whether it’s one student or one hundred, Expl-AI-nly scales effortlessly to help each learner at their own pace.',
+      'Whether it’s one student or one hundred, Aacharya scales effortlessly to help each learner at their own pace.',
   },
 ];
 
