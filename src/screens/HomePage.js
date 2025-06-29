@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import './homescreen.css';
 import genAssignmentImg from '..generate_assignment.png';
 import hintsImg from '..Hints2.png';
-import dashboardImg from '..Teacher dashboard.png';
-import reviewImg from '..Teacher Review.png';
+// import dashboardImg from '..Teacher dashboard.png';
+// import reviewImg from '..Teacher Review.png';
 import summaryImg from '..summarizer.png';
 import chatbotImg from '..chatbot.png';
 
