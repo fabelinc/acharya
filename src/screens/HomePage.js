@@ -2,12 +2,12 @@ import React from 'react';
 import { Typography, Button, Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import './homescreen.css';
-import genAssignmentImg from './Images/generate_assignment.png';
-import hintsImg from './Images/Hints2.png';
-import dashboardImg from './Images/Teacher dashboard.png';
-import reviewImg from './Images/Teacher Review.png';
-import summaryImg from './Images/summarizer.png';
-import chatbotImg from './Images/chatbot.png';
+import genAssignmentImg from '/Images/generate_assignment.png';
+import hintsImg from '/Images/Hints2.png';
+import dashboardImg from '/Images/Teacher dashboard.png';
+import reviewImg from '/Images/Teacher Review.png';
+import summaryImg from '/Images/summarizer.png';
+import chatbotImg from '/Images/chatbot.png';
 
 const { Title, Paragraph } = Typography;
 
