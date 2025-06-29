@@ -1,7 +1,13 @@
 import React from 'react';
-import { Typography, Button, Row, Col, Affix } from 'antd';
+import { Typography, Button, Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import './homescreen.css';
+import genAssignmentImg from './Images/generate_assignment.png';
+import hintsImg from './Images/Hints2.png';
+import dashboardImg from './Images/Teacher dashboard.png';
+import reviewImg from './Images/Teacher Review.png';
+import summaryImg from './Images/summarizer.png';
+import chatbotImg from './Images/chatbot.png';
 
 const { Title, Paragraph } = Typography;
 
@@ -11,42 +17,42 @@ const features = [
     title: '📝 Assignment Generator',
     description:
       'Upload your material or select grade and topic — instantly get a ready-to-use assignment with AI-generated questions.',
-    image: 'Images/generate_assignment.png',
+    image: genAssignmentImg,
   },
   {
     id: 'interactive-hints',
     title: '🧩 Interactive Hints',
     description:
       'Students receive probing questions instead of answers. Clicking “Show Hint” guides them step-by-step.',
-    image: '/Images/Hints2.png',
+    image: hintsImg,
   },
   {
     id: 'teacher-dashboard',
     title: '📊 Teacher Dashboard',
     description:
       'Track performance metrics, grading status, and student progress with visual dashboards and summaries.',
-    image: '/Images/Teacher dashboard.png',
+    image: dashboardImg,
   },
   {
     id: 'grading-override',
     title: '✅ Grading + Override',
     description:
       'AI evaluates student submissions. Teachers can review and override scores with a single click.',
-    image: '/Images/Teacher Review.png',
+    image: reviewImg,
   },
   {
     id: 'chapter-summarizer',
     title: '📚 Chapter Summarizer',
     description:
       'Turn long paragraphs into concise summaries — perfect for quick student revision or topic introductions.',
-    image: '/Images/summarizer.png',
+    image: summaryImg,
   },
   {
     id: 'ai-chatbot',
     title: '🤖 AI Teaching Chatbot',
     description:
       'Students can ask questions based on teacher-uploaded notes. The chatbot provides relevant, contextual answers.',
-    image: '/Images/chatbot.png',
+    image: chatbotImg,
   },
 ];
 
@@ -77,22 +83,6 @@ const LandingPage = () => {
             </Link>
           </div>
         </div>
-
-        {/* Floating Scroll Menu */}
-        <Affix offsetTop={100} className="hidden md:block fixed top-24 right-8 z-50">
-          <div className="bg-white border p-4 rounded-lg shadow-md space-y-2 w-56">
-            <Title level={5}>Jump to Feature</Title>
-            {features.map((feature) => (
-              <div
-                key={feature.id}
-                onClick={() => scrollTo(feature.id)}
-                className="cursor-pointer text-edu-primary hover:underline text-sm"
-              >
-                {feature.title}
-              </div>
-            ))}
-          </div>
-        </Affix>
 
         {/* Feature Sections */}
         {features.map((feature, idx) => (
