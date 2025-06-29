@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Button, Row, Col } from 'antd';
+import { Typography, Button, Row, Col, Affix } from 'antd';
 import { Link } from 'react-router-dom';
 import './homescreen.css';
 
