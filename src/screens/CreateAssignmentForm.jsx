@@ -62,7 +62,7 @@ export default function CreateAssignmentForm() {
       const responseData = await res.json();
       message.success('Assignment generated!');
       // Store token in localStorage
-      localStorage.setItem('teacherToken', res.data.access_token);
+      localStorage.setItem('teacherToken', responseData.access_token);
       
       navigate(`/assignments/publish/${responseData.assignment_id}`, {
         state: {
@@ -92,7 +92,7 @@ export default function CreateAssignmentForm() {
   };
   
   return (
-    <Card title="Create Assignment - From your material or From AI Knowledge Base" style={{ maxWidth: 600, margin: '0 auto' }}>
+    <Card title="Create Assignment - Use your own material or generate one with AI." style={{ maxWidth: 600, margin: '0 auto' }}>
       <Spin spinning={loading} tip="Generating Assignment...">
       <Form form={form} layout="vertical" initialValues={{
           subject: 'math',
@@ -101,7 +101,7 @@ export default function CreateAssignmentForm() {
           question_count: 2,
         }}
       >
-        <Form.Item label="Upload Materials (Optional)">
+        <Form.Item label="Upload Materials (or select from below)">
           <Upload {...uploadProps}>
             <Button icon={<UploadOutlined />}>Select File</Button>
           </Upload>
@@ -163,7 +163,17 @@ export default function CreateAssignmentForm() {
 
         <Form.Item>
           <Space>
-            <Button type="primary" onClick={handleSubmit}>
+          <Button
+              type="primary"
+              onClick={() => {
+                const token = auth?.access_token;
+                if (!token) {
+                  console.error("Access token is missing. Please log in again.");
+                  return;
+                }
+                handleSubmit(token);
+              }}
+            >
               Generate Assignment
             </Button>
             <Button htmlType="button" onClick={() => {
