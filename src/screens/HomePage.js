@@ -89,7 +89,7 @@ const LandingPage = () => {
 
         {/* Carousel Section */}
         <motion.div
-          className="rounded-3xl overflow-hidden shadow-xl"
+          className="rounded-2xl overflow-hidden shadow-xl"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -99,16 +99,19 @@ const LandingPage = () => {
             {heroSlides.map((slide, index) => (
               <div
                 key={index}
-                className="relative h-[500px] bg-black flex items-center justify-center"
+                className="relative h-[300px] sm:h-[400px] md:h-[500px] bg-black flex items-center justify-center"
               >
                 <img
                   src={slide.image}
                   alt={slide.caption}
-                  className="object-contain max-h-full max-w-full transition-all duration-700"
+                  className="w-full h-full object-contain sm:object-cover"
                 />
-                <div className="absolute bottom-10 w-full text-center">
-                  <div className="inline-block bg-black bg-opacity-60 px-6 py-3 rounded-xl shadow-lg">
-                    <Title level={3} className="text-white m-0">
+                <div className="absolute bottom-4 w-full px-4 text-center">
+                  <div className="inline-block bg-black bg-opacity-60 px-4 py-2 sm:px-6 sm:py-3 rounded-lg max-w-xs sm:max-w-lg mx-auto">
+                    <Title
+                      level={4}
+                      className="text-white m-0 text-sm sm:text-lg leading-snug"
+                    >
                       {slide.caption}
                     </Title>
                   </div>
@@ -117,6 +120,7 @@ const LandingPage = () => {
             ))}
           </Carousel>
         </motion.div>
+
 
         {/* Features */}
         <div className="mt-24 space-y-32">
