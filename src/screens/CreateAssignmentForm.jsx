@@ -166,7 +166,7 @@ export default function CreateAssignmentForm() {
           <Button
               type="primary"
               onClick={() => {
-                const token = auth?.access_token;
+                const token = localStorage.getItem('teacherToken');
                 if (!token) {
                   console.error("Access token is missing. Please log in again.");
                   return;
