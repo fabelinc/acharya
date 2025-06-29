@@ -2,68 +2,45 @@ import React from 'react';
 import { Typography, Button, Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import './homescreen.css';
-import genAssignmentImg from '..generate_assignment.png';
-import hintsImg from '..Hints2.png';
-// import dashboardImg from '..Teacher dashboard.png';
-// import reviewImg from '..Teacher Review.png';
-import summaryImg from '..summarizer.png';
-import chatbotImg from '..chatbot.png';
+import genAssignmentImg from '../Images/generate_assignment.png';
+import hintsImg from '../Images/Hints2.png';
+import dashboardImg from '../Images/Teacher dashboard.png';
+import gradingImg from '../Images/Teacher Review.png';
+import summarizerImg from '../Images/summarizer.png';
+import chatbotImg from '../Images/chatbot.png';
 
 const { Title, Paragraph } = Typography;
 
 const features = [
   {
-    id: 'assignment-generator',
     title: '📝 Assignment Generator',
-    description:
-      'Upload your material or select grade and topic — instantly get a ready-to-use assignment with AI-generated questions.',
-    image: genAssignmentImg,
+    description: `Say goodbye to hours spent crafting questions manually. With Aacharya’s Assignment Generator, simply upload your class notes or select the grade and subject — and our AI creates a complete assignment for you. Each question is tailored to the topic and difficulty you choose, making it easy to generate practice sheets, homework, or in-class tests with just a few clicks.`,
   },
   {
-    id: 'interactive-hints',
     title: '🧩 Interactive Hints',
-    description:
-      'Students receive probing questions instead of answers. Clicking “Show Hint” guides them step-by-step.',
-    image: hintsImg,
+    description: `Students often need just a nudge to get to the right answer. Aacharya’s unique Socratic Hint System gives them guiding prompts instead of final answers. When a student clicks “Show Hint,” they receive context-aware probing questions that encourage critical thinking and deeper learning — helping them become more independent problem-solvers.`,
   },
   {
-    id: 'teacher-dashboard',
     title: '📊 Teacher Dashboard',
-    description:
-      'Track performance metrics, grading status, and student progress with visual dashboards and summaries.',
-    image: dashboardImg,
+    description: `Your time is valuable — and so is your insight. The Aacharya Teacher Dashboard consolidates all your student data in one place. View performance trends across assignments, track individual student progress, and identify where learners are struggling. Visualizations like bar charts, tables, and progress summaries make it easy to stay informed and take action.`,
   },
   {
-    id: 'grading-override',
-    title: '✅ Grading + Override',
-    description:
-      'AI evaluates student submissions. Teachers can review and override scores with a single click.',
-    image: reviewImg,
+    title: '✅ AI Grading + Manual Override',
+    description: `Let AI do the first round of grading — from multiple choice to written answers — and save yourself hours of checking. You always stay in control: review AI-graded responses and override scores wherever needed. The interface is simple and intuitive, enabling a seamless blend of automation and educator oversight.`,
   },
   {
-    id: 'chapter-summarizer',
     title: '📚 Chapter Summarizer',
-    description:
-      'Turn long paragraphs into concise summaries — perfect for quick student revision or topic introductions.',
-    image: summaryImg,
+    description: `No more rephrasing long texts for students. Just paste a textbook paragraph or your own notes, and Aacharya generates a concise, structured summary. Perfect for revision sessions, class handouts, or even just simplifying complex material for easier understanding. It’s like having an academic editor built into your workflow.`,
   },
   {
-    id: 'ai-chatbot',
     title: '🤖 AI Teaching Chatbot',
-    description:
-      'Students can ask questions based on teacher-uploaded notes. The chatbot provides relevant, contextual answers.',
-    image: chatbotImg,
+    description: `Imagine your students getting instant answers based on *your* teaching material — even when you’re offline. With the AI Teaching Chatbot, you can upload class notes, and students can ask questions directly through a conversational interface. The bot responds with relevant, accurate explanations rooted in your content — extending your support without adding to your workload.`,
   },
 ];
 
-const scrollTo = (id) => {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-};
-
 const LandingPage = () => {
   return (
-    <div className="min-h-screen bg-[var(--bg-light)] text-gray-800 relative">
+    <div className="min-h-screen bg-[var(--bg-light)] text-gray-800">
       <div className="container mx-auto px-6 py-20">
         {/* Hero Section */}
         <div className="text-center mb-20">
@@ -84,42 +61,25 @@ const LandingPage = () => {
           </div>
         </div>
 
-        {/* Feature Sections */}
-        {features.map((feature, idx) => (
-          <Row
-            id={feature.id}
-            gutter={[32, 64]}
-            align="middle"
-            key={idx}
-            className="feature-section py-24"
-            style={{
-              flexDirection: idx % 2 === 0 ? 'row' : 'row-reverse',
-            }}
-          >
-            <Col xs={24} md={12}>
-              <img
-                src={feature.image}
-                alt={feature.title}
-                className="w-full rounded-lg shadow-md"
-                style={{ maxHeight: 400, objectFit: 'contain' }}
-              />
-            </Col>
-            <Col xs={24} md={12}>
-              <Title level={3} className="edu-primary mb-3">{feature.title}</Title>
-              <Paragraph className="text-lg">{feature.description}</Paragraph>
-            </Col>
-          </Row>
-        ))}
+        {/* Feature Narratives (Long Scroll Format) */}
+        <div className="space-y-24">
+          {features.map((feature, idx) => (
+            <Row key={idx} justify="center" className="px-4 md:px-12">
+              <Col xs={24} md={18}>
+                <Title level={3} className="edu-primary mb-3">{feature.title}</Title>
+                <Paragraph className="text-lg">{feature.description}</Paragraph>
+              </Col>
+            </Row>
+          ))}
+        </div>
 
-        {/* About Aacharya */}
-        <div id="about" className="mt-32 border-t pt-20">
-          <Title level={2} className="text-center edu-primary mb-6">About Aacharya</Title>
-          <Paragraph className="text-center text-lg max-w-3xl mx-auto mb-12">
-            Aacharya is built for modern educators who want to combine the wisdom of traditional teaching
-            with the power of artificial intelligence. Whether you run a classroom or a coaching center,
-            Aacharya scales with your vision and adapts to your style.
+        {/* About Section */}
+        <div id="about" className="mt-40 border-t pt-20 text-center">
+          <Title level={2} className="edu-primary mb-6">About Aacharya</Title>
+          <Paragraph className="text-lg max-w-3xl mx-auto mb-12">
+            Aacharya is built for modern educators who want to combine the wisdom of traditional teaching with the efficiency of AI. Whether you manage a classroom or a coaching center, Aacharya adapts to your style and scales with your needs.
           </Paragraph>
-          <Paragraph className="text-center text-sm text-gray-500">
+          <Paragraph className="text-sm text-gray-500">
             © {new Date().getFullYear()} Aacharya EdTech. All rights reserved.
           </Paragraph>
         </div>
@@ -138,4 +98,5 @@ const LandingPage = () => {
     </div>
   );
 };
+
 export default LandingPage;
