@@ -1,91 +1,140 @@
 import React from 'react';
-import { Typography, Button, Row, Col, Card, Space } from 'antd';
+import { Typography, Button, Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import './homescreen.css';
 
-const { Title, Paragraph, Text } = Typography;
+const { Title, Paragraph } = Typography;
 
 const features = [
   {
-    title: 'Save Teaching Hours',
+    id: 'assignment-generator',
+    title: '📝 Assignment Generator',
     description:
-      'Generate assignments, quizzes, and chapter summaries in seconds. Spend more time teaching, less time preparing.',
+      'Upload your material or select grade and topic — instantly get a ready-to-use assignment with AI-generated questions.',
+    image: 'Images/generate_assignment.png',
   },
   {
-    title: 'Socratic Student Guidance',
+    id: 'interactive-hints',
+    title: '🧩 Interactive Hints',
     description:
-      'Instead of giving direct answers, our assistant asks probing questions — leading students to solve problems on their own.',
+      'Students receive probing questions instead of answers. Clicking “Show Hint” guides them step-by-step.',
+    image: '/Images/Hints2.png',
   },
   {
-    title: 'Chapter Summaries for Revision',
+    id: 'teacher-dashboard',
+    title: '📊 Teacher Dashboard',
     description:
-      'Auto-generate crisp summaries of each chapter to help students revise more effectively before exams.',
+      'Track performance metrics, grading status, and student progress with visual dashboards and summaries.',
+    image: '/Images/Teacher dashboard.png',
   },
   {
-    title: 'Real-Time Query Support',
+    id: 'grading-override',
+    title: '✅ Grading + Override',
     description:
-      'Upload your notes and let AI handle routine student questions — 24/7 personalized support without the teacher burnout.',
+      'AI evaluates student submissions. Teachers can review and override scores with a single click.',
+    image: '/Images/Teacher Review.png',
   },
   {
-    title: 'Human-in-the-Loop Oversight',
+    id: 'chapter-summarizer',
+    title: '📚 Chapter Summarizer',
     description:
-      'Teachers can review and refine AI-generated content — combining the efficiency of AI with the judgment of an educator.',
+      'Turn long paragraphs into concise summaries — perfect for quick student revision or topic introductions.',
+    image: '/Images/summarizer.png',
   },
   {
-    title: 'Scalable Support for Every Learner',
+    id: 'ai-chatbot',
+    title: '🤖 AI Teaching Chatbot',
     description:
-      'Whether it’s one student or one hundred, Aacharya scales effortlessly to help each learner at their own pace.',
+      'Students can ask questions based on teacher-uploaded notes. The chatbot provides relevant, contextual answers.',
+    image: '/Images/chatbot.png',
   },
 ];
 
+const scrollTo = (id) => {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+};
+
 const LandingPage = () => {
   return (
-    <div className="min-h-screen py-12 bg-[var(--bg-light)]">
-      <div className="container mx-auto px-6">
+    <div className="min-h-screen bg-[var(--bg-light)] text-gray-800 relative">
+      <div className="container mx-auto px-6 py-20">
         {/* Hero Section */}
-        <div style={{ textAlign: 'center', marginBottom: 48 }}>
-          <Title className="edu-primary">Your AI-Powered Teaching Assistant</Title>
+        <div className="text-center mb-20">
+          <Title className="edu-primary mb-4">Aacharya: Your AI-Powered Teaching Assistant</Title>
           <Paragraph className="text-lead max-w-2xl mx-auto">
-            Aacharya empowers teachers and engages students — automating the busywork,
-            guiding with smart questioning, and supporting revision with summaries.
+            Save time, support every student, and scale your teaching — all with the power of AI.
           </Paragraph>
+          <div className="mt-8">
+            <Link to="/teacher/login">
+              <Button
+                type="primary"
+                size="large"
+                style={{ backgroundColor: 'var(--edu-primary)', borderColor: 'var(--edu-primary)' }}
+              >
+                Get Started
+              </Button>
+            </Link>
+          </div>
         </div>
 
-        {/* Feature Grid */}
-        <Row gutter={[24, 24]}>
-          {features.map((feature, idx) => (
-            <Col xs={24} sm={12} lg={8} key={idx}>
-              <Card
-                title={feature.title}
-                bordered={false}
-                className="hover:shadow-md edu-primary-border"
-                style={{ minHeight: 220 }}
+        {/* Floating Scroll Menu */}
+        <Affix offsetTop={100} className="hidden md:block fixed top-24 right-8 z-50">
+          <div className="bg-white border p-4 rounded-lg shadow-md space-y-2 w-56">
+            <Title level={5}>Jump to Feature</Title>
+            {features.map((feature) => (
+              <div
+                key={feature.id}
+                onClick={() => scrollTo(feature.id)}
+                className="cursor-pointer text-edu-primary hover:underline text-sm"
               >
-                <Paragraph>{feature.description}</Paragraph>
-              </Card>
-            </Col>
-          ))}
-        </Row>
+                {feature.title}
+              </div>
+            ))}
+          </div>
+        </Affix>
 
-        {/* Call to Action */}
-        <div style={{ textAlign: 'center', marginTop: 64 }}>
-          <Title level={2}>Try Aacharya Today</Title>
-          <Paragraph className="text-lead mb-6">
-            Experience the future of teaching — personalized, efficient, and teacher-friendly.
+        {/* Feature Sections */}
+        {features.map((feature, idx) => (
+          <Row
+            id={feature.id}
+            gutter={[32, 64]}
+            align="middle"
+            key={idx}
+            className="feature-section py-24"
+            style={{
+              flexDirection: idx % 2 === 0 ? 'row' : 'row-reverse',
+            }}
+          >
+            <Col xs={24} md={12}>
+              <img
+                src={feature.image}
+                alt={feature.title}
+                className="w-full rounded-lg shadow-md"
+                style={{ maxHeight: 400, objectFit: 'contain' }}
+              />
+            </Col>
+            <Col xs={24} md={12}>
+              <Title level={3} className="edu-primary mb-3">{feature.title}</Title>
+              <Paragraph className="text-lg">{feature.description}</Paragraph>
+            </Col>
+          </Row>
+        ))}
+
+        {/* About Aacharya */}
+        <div id="about" className="mt-32 border-t pt-20">
+          <Title level={2} className="text-center edu-primary mb-6">About Aacharya</Title>
+          <Paragraph className="text-center text-lg max-w-3xl mx-auto mb-12">
+            Aacharya is built for modern educators who want to combine the wisdom of traditional teaching
+            with the power of artificial intelligence. Whether you run a classroom or a coaching center,
+            Aacharya scales with your vision and adapts to your style.
           </Paragraph>
-          <Link to="/teacher/login">
-            <Button
-              type="primary"
-              size="large"
-              style={{ backgroundColor: 'var(--edu-primary)', borderColor: 'var(--edu-primary)' }}
-            >
-              Get Started
-            </Button>
-          </Link>
+          <Paragraph className="text-center text-sm text-gray-500">
+            © {new Date().getFullYear()} Aacharya EdTech. All rights reserved.
+          </Paragraph>
         </div>
       </div>
     </div>
   );
 };
-
 export default LandingPage;
