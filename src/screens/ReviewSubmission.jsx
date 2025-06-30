@@ -85,7 +85,14 @@ export default function ReviewSubmission() {
           Confirm & Notify Student
         </Button> */}
         <Button
-          onClick={() => navigate(location.state?.from || "/teacher/dashboard")}
+          onClick={() =>
+            navigate(location.state?.from || "/teachers", {
+              state: {
+                activeTab: location.state?.activeTab || "dashboard",
+                sessionId: location.state?.sessionId || ""
+              }
+            })
+          }
           type="default"
         >
           Go Back

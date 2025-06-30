@@ -44,18 +44,18 @@ const features = [
   },
   {
     title: '📚 Chapter Summarizer',
-    description: `PastNo more rephrasing long texts for students. Just paste a textbook paragraph or your own notes, and Aacharya generates a concise, structured summary. Perfect for revision sessions, class handouts, or even just simplifying complex material for easier understanding. It's like having an academic editor built into your workflow.e a textbook paragraph or your own notes, and Aacharya generates a concise, structured summary for revision or handouts.`,
+    description: `No more rephrasing long texts for students. Just paste a textbook paragraph or your own notes, and Aacharya generates a concise, structured summary. Perfect for revision sessions, class handouts, or even just simplifying complex material for easier understanding. It's like having an academic editor built into your workflow.e a textbook paragraph or your own notes, and Aacharya generates a concise, structured summary for revision or handouts.`,
   },
   {
     title: '🤖 AI Teaching Chatbot',
-    description: `StudentImagine your students getting instant answers based on *your* teaching material — even when you're offline. With the AI Teaching Chatbot, you can upload class notes, and students can ask questions directly through a conversational interface. The bot responds with relevant, accurate explanations rooted in your content — extending your support without adding to your workload.s get instant answers based on your teaching material. The bot responds with accurate, relevant explanations rooted in your content.`,
+    description: `Imagine your students getting instant answers based on *your* teaching material — even when you're offline. With the AI Teaching Chatbot, you can upload class notes, and students can ask questions directly through a conversational interface. The bot responds with relevant, accurate explanations rooted in your content — extending your support without adding to your workload.s get instant answers based on your teaching material. The bot responds with accurate, relevant explanations rooted in your content.`,
   },
 ];
 
 const LandingPage = () => {
   return (
-    <div className="min-h-screen bg-white text-gray-800 font-sans">
-      <div className="container mx-auto px-6 py-20">
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
+      <div className="container mx-auto px-4 sm:px-6 py-20">
         {/* Hero Section */}
         <motion.div
           className="text-center mb-20"
@@ -63,12 +63,19 @@ const LandingPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <Title className="text-5xl font-bold text-edu-primary mb-4 leading-tight">
+          <Title className="text-3xl sm:text-5xl font-semibold text-edu-primary dark:text-edu-primary mb-6 leading-tight tracking-tight">
             Aacharya: Your AI-Powered Teaching Assistant
           </Title>
-          <Paragraph className="text-xl text-gray-600 max-w-2xl mx-auto mt-4">
+
+          <Paragraph className="text-base sm:text-xl text-gray-600 dark:text-gray-300 font-light leading-relaxed tracking-wide max-w-2xl mx-auto mt-4">
             Save time, support every student, and scale your teaching — all with the power of AI.
           </Paragraph>
+
+          <Paragraph className="text-sm sm:text-lg text-gray-700 dark:text-gray-400 font-light leading-relaxed tracking-wide max-w-3xl mx-auto mt-6">
+          Aacharya helps modern educators generate assignments, deliver guided hints, grade responses, and track student performance — all from one streamlined interface.
+          Whether you're in a classroom, tutoring center, or online program, Aacharya adapts to your style and scales with your needs.
+          </Paragraph>
+
           <motion.div
             className="mt-10"
             initial={{ opacity: 0 }}
@@ -79,7 +86,7 @@ const LandingPage = () => {
               <Button
                 type="primary"
                 size="large"
-                className="bg-edu-primary border-none text-white hover:bg-edu-primary-dark shadow-lg px-8 py-3 rounded-2xl transition-all duration-300"
+                className="bg-edu-primary border-none text-white hover:bg-edu-primary-dark shadow-lg px-8 py-3 rounded-xl text-base font-medium tracking-wide"
               >
                 Get Started
               </Button>
@@ -98,64 +105,61 @@ const LandingPage = () => {
           <Carousel autoplay effect="fade" dots>
             {heroSlides.map((slide, index) => (
               <div key={index} className="relative bg-black w-full">
-              <div className="w-full h-[220px] sm:h-[320px] md:h-[450px] lg:h-[500px] overflow-hidden">
-                <img
-                  src={slide.image}
-                  alt={slide.caption}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-full px-4 max-w-sm text-center">
-                <div className="bg-black bg-opacity-60 px-4 py-2 rounded-md shadow-md">
-                  <Title level={4} className="text-white text-sm sm:text-base md:text-lg m-0">
-                    {slide.caption}
-                  </Title>
+                <div className="w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden">
+                  <img src={slide.image} alt={slide.caption} className="w-full h-full object-cover" />
+                </div>
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-full px-4 max-w-xs sm:max-w-md text-center">
+                  <div className="bg-black bg-opacity-60 px-4 py-2 rounded-md shadow-md">
+                    <Title level={4} className="text-white text-sm sm:text-base md:text-lg font-medium m-0">
+                      {slide.caption}
+                    </Title>
+                  </div>
                 </div>
               </div>
-            </div>
             ))}
           </Carousel>
         </motion.div>
 
-
         {/* Features */}
-        <div className="mt-24 space-y-32">
+        <div className="mt-24 space-y-20 sm:space-y-24">
           {features.map((feature, idx) => (
             <Row key={idx} justify="center" className="px-4 md:px-12">
-              <Col xs={24} md={18} className="text-center md:text-left animate-fade-in">
-                <Title level={3} className="text-3xl text-edu-primary font-semibold mb-3">{feature.title}</Title>
-                <Paragraph className="text-lg text-gray-700 leading-relaxed">{feature.description}</Paragraph>
+              <Col xs={24} md={20} lg={18} className="text-center md:text-left animate-fade-in">
+                <Title
+                  level={3}
+                  className="text-xl sm:text-2xl lg:text-3xl font-medium text-edu-primary dark:text-edu-primary tracking-tight mb-3"
+                >
+                  {feature.title}
+                </Title>
+                <Paragraph className="text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 font-light leading-relaxed tracking-wide">
+                  {feature.description}
+                </Paragraph>
               </Col>
             </Row>
           ))}
         </div>
 
-       
-        {/* About */}
-        <section className="mt-32 pt-20 border-t animate-fade-in">
-          <Title level={2} className="text-center text-edu-primary mb-6">About Aacharya</Title>
-          <Paragraph className="text-center text-lg text-gray-700 max-w-3xl mx-auto mb-6">
-          Aacharya is built for modern educators who want to do more with less — without compromising quality.
-It empowers teachers to generate assignments / quizes, deliver guided hints, grade responses, and track student performance — all from one streamlined interface.
-Whether you're running a classroom, tutoring center, or online program, Aacharya adapts to your teaching style and scales with your needs.
-By combining the best of human insight with AI-powered support, Aacharya frees up your time to focus on what matters most: teaching and mentoring students.          </Paragraph>
-          <Paragraph className="text-center text-sm text-gray-500">
+        {/* About Section */}
+        <section className="mt-32 pt-20 border-t dark:border-gray-700 animate-fade-in">
+          <Title level={2} className="text-center text-edu-primary dark:text-edu-primary font-semibold mb-6">
+            About Us
+          </Title>
+
+          <Paragraph className="text-base text-gray-700 dark:text-gray-300 font-light leading-relaxed text-center max-w-3xl mx-auto mb-6">
+            We’re building smarter classrooms for every educator. Aacharya saves prep time, supports students, and boosts engagement — all with AI-powered tools.
+          </Paragraph>
+
+          <Paragraph className="text-sm text-gray-500 dark:text-gray-400 text-center">
+            Whether you're in school or at a coaching center, Aacharya scales with you. We're excited to help shape the future of learning.
+          </Paragraph>
+
+          <Paragraph className="text-sm text-gray-500 dark:text-gray-400 text-center">
+            Based in India and the U.S., we collaborate globally with passionate teachers.
+          </Paragraph>
+
+          <Paragraph className="text-sm text-gray-500 dark:text-gray-400 text-center mt-4">
             © {new Date().getFullYear()} Aacharya EdTech. All rights reserved.
           </Paragraph>
-        </section>
-
-        <section className="mt-24 pt-20 border-t animate-fade-in">
-          <Title level={2} className="text-center text-edu-primary mb-6">About Us</Title>
-          <Paragraph className="text-center text-lg text-gray-700 max-w-3xl mx-auto mb-6">
-          We are on a mission to make high-quality education more efficient and accessible for teachers and students. Our platform provides an AI-powered <strong>Teaching Assistant</strong> that supports personalized learning, saves preparation time, and enhances classroom engagement.
-          </Paragraph>
-          <Paragraph className="text-center text-sm text-gray-500">
-          Whether you're a middle school teacher or a coaching center instructor, our platform scales with your needs. We're just getting started, and we’re excited to build the future of education with you.
-        </Paragraph>
-        <Paragraph className="text-center text-sm text-gray-500">
-            Based in India and the U.S., we co-create smarter classrooms with educators across the globe.
-          </Paragraph>
-
         </section>
       </div>
     </div>

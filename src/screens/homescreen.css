@@ -13,8 +13,7 @@
   
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: var(--text-primary);
-    background-color: var(--bg-light);
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   
   .container {

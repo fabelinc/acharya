@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState, useCallback, useEffect } from 'react';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { Button, Menu, Layout, Row, Col, Card, Typography } from 'antd';
 import { LogoutOutlined } from '@ant-design/icons';
 import TeacherSubmissions from './TeacherSubmissions';
@@ -9,13 +9,25 @@ const { Title, Paragraph } = Typography;
 
 export default function HomeScreen() {
   const [activeTab, setActiveTab] = useState(0);
+  const [sessionIdFromState, setSessionIdFromState] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
   const teacherName = localStorage.getItem('teacherName');
 
   const logout = useCallback(() => {
     localStorage.removeItem('teacherToken');
     navigate('/teacher/login');
   }, [navigate]);
+
+  // ⬇️ Set active tab based on location.state (like from ReviewSubmission)
+  useEffect(() => {
+    if (location.state?.activeTab === 'submissions') {
+      setActiveTab(1);
+      if (location.state?.sessionId) {
+        setSessionIdFromState(location.state.sessionId);
+      }
+    }
+  }, [location.state]);
 
   const actionCards = [
     {
@@ -45,7 +57,7 @@ export default function HomeScreen() {
       <Header style={{ background: '#fff', padding: '0 24px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Title level={3} style={{ margin: 0 }}>
-          Welcome, {teacherName ? teacherName : 'Teacher'}!
+            Welcome, {teacherName ? teacherName : 'Teacher'}!
           </Title>
           <Button type="primary" icon={<LogoutOutlined />} danger onClick={logout}>
             Logout
@@ -86,7 +98,8 @@ export default function HomeScreen() {
 
         {activeTab === 1 && (
           <div>
-            <TeacherSubmissions />
+            {/* ⬇️ Pass sessionId as a query param if coming from Review */}
+            <TeacherSubmissions sessionIdOverride={sessionIdFromState} />
           </div>
         )}
 
