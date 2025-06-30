@@ -21,6 +21,7 @@ def create_app() -> FastAPI:
     # CORS settings (add production domain later)
     app.add_middleware(
         CORSMiddleware,
+        allow_origin_regex=r"https://.*\.vercel\.app",
         allow_origins=[
             "http://localhost:3000",           # local dev
             "https://acharya-chi.vercel.app",
