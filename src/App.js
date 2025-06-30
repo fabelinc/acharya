@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
-
+import { inject } from '@vercel/analytics';
+inject();
 import { AuthContext, AuthProvider } from './context/AuthContext';
 
 import HomeScreen from './screens/ForTeacher';

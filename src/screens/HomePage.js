@@ -135,8 +135,10 @@ const LandingPage = () => {
         <section className="mt-32 pt-20 border-t animate-fade-in">
           <Title level={2} className="text-center text-edu-primary mb-6">About Aacharya</Title>
           <Paragraph className="text-center text-lg text-gray-700 max-w-3xl mx-auto mb-6">
-            Aacharya combines the wisdom of traditional teaching with the efficiency of AI. Whether you manage a classroom or a coaching center, it adapts to your style and scales with your needs.
-          </Paragraph>
+          Aacharya is built for modern educators who want to do more with less — without compromising quality.
+It empowers teachers to generate assignments / quizes, deliver guided hints, grade responses, and track student performance — all from one streamlined interface.
+Whether you're running a classroom, tutoring center, or online program, Aacharya adapts to your teaching style and scales with your needs.
+By combining the best of human insight with AI-powered support, Aacharya frees up your time to focus on what matters most: teaching and mentoring students.          </Paragraph>
           <Paragraph className="text-center text-sm text-gray-500">
             © {new Date().getFullYear()} Aacharya EdTech. All rights reserved.
           </Paragraph>
