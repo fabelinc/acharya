@@ -33,6 +33,10 @@ def signup(data: TeacherSignup, db: Session = Depends(get_db)):
     db.commit()
     return {"msg": "Signup successful"}
 
+@router.options("/signup")
+async def signup_options():
+    return JSONResponse(status_code=200)
+
 @router.post("/login")
 def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
     user = authenticate_teacher(db, form_data.username, form_data.password)
