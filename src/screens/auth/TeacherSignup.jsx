@@ -11,11 +11,17 @@ export default function TeacherSignup() {
 
   const onFinish = async (values) => {
     try {
-      await axios.post(`${backendURL}/api/v1/auth/signup`, {
-        email: values.email,
-        password: values.password,
-        name: values.name,
-      });
+      await axios.post(
+        `${backendURL}/api/v1/auth/signup`,
+        {
+          email: values.email,
+          password: values.password,
+          name: values.name,
+        },
+        {
+          withCredentials: true, // <-- This goes here, in config object
+        }
+      );
       message.success('Signup successful! You can now login.');
       navigate('/teacher/login');
     } catch (err) {
