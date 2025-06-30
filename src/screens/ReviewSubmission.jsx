@@ -1,6 +1,6 @@
 // pages/Teacher/ReviewSubmission.jsx
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import {
   Card,
   Typography,
@@ -21,8 +21,10 @@ export default function ReviewSubmission() {
   const navigate = useNavigate();
   const [submission, setSubmission] = useState(null);
   const [overrideScore, setOverrideScore] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
+    console.log("Location state:", location.state);
     window.scrollTo(0, 0);
     const fetchData = async () => {
       try {
@@ -33,7 +35,7 @@ export default function ReviewSubmission() {
       }
     };
     fetchData();
-  }, [submissionId]);
+  }, [location.state , submissionId]);
 
   const handleOverrideSubmit = async () => {
     message.success("Score override saved and student notified! (stub)");
@@ -79,10 +81,13 @@ export default function ReviewSubmission() {
           value={overrideScore}
           onChange={(e) => setOverrideScore(e.target.value)}
         />
-        <Button type="primary" onClick={handleOverrideSubmit}>
+        {/* <Button type="primary" onClick={handleOverrideSubmit}>
           Confirm & Notify Student
-        </Button>
-        <Button onClick={() => navigate(-1)} type="default">
+        </Button> */}
+        <Button
+          onClick={() => navigate(location.state?.from || "/teacher/dashboard")}
+          type="default"
+        >
           Go Back
         </Button>
       </Space>

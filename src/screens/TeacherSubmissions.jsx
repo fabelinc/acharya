@@ -1,8 +1,8 @@
 // TeacherSubmissions.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Table, Input, Button, message, Typography, Space, Collapse } from "antd";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const { Title } = Typography;
 const { Panel } = Collapse;
@@ -18,6 +18,7 @@ const formatDate = (dateString) => {
     hour12: true
   };
   const date = new Date(dateString);
+  
   return new Intl.DateTimeFormat('en-US', options).format(date);
 };
 
@@ -26,16 +27,29 @@ const TeacherSubmissions = () => {
   const [submissions, setSubmissions] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const fetchSubmissions = async () => {
-    if (!sessionId) {
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const sessionIdFromURL = params.get("sessionId");
+  
+    if (sessionIdFromURL) {
+      setSessionId(sessionIdFromURL);
+      fetchSubmissions(sessionIdFromURL);
+    }
+  }, [location.search]);
+
+  const fetchSubmissions = async (overrideSessionId) => {
+    const idToUse = overrideSessionId || sessionId;
+  
+    if (!idToUse) {
       message.warning("Please enter a session ID");
       return;
     }
-
+  
     setLoading(true);
     try {
-      const res = await axios.get(`${backendURL}/api/v1/assignments/teacher/allsubmissions/${sessionId}`);
+      const res = await axios.get(`${backendURL}/api/v1/assignments/teacher/allsubmissions/${idToUse}`);
       setSubmissions(res.data);
     } catch (err) {
       console.error(err);
@@ -62,27 +76,16 @@ const TeacherSubmissions = () => {
       key: "submitted_at",
       render: formatDate,
     },
-    // {
-    //   title: "Hint Usage",
-    //   key: "hints_used",
-    //   render: (_, record) =>
-    //     Object.values(record.interaction_analysis || {}).reduce(
-    //       (acc, q) => acc + (q?.hints_used || 0),
-    //       0
-    //     ),
-    // },
-    // {
-    //   title: "Time Spent (s)",
-    //   key: "time_spent",
-    //   render: (_, record) => record.interaction_analysis?.hints_used ?? 0,
-    // },
+   
     {
       title: "Action",
       key: "action",
       render: (_, record) => (
         <Button
           type="link"
-          onClick={() => navigate(`/teacher/submission/${record.submission_id}`)}
+          onClick={() => navigate(`/teacher/submission/${record.submission_id}`, {
+            state: { from: `/teacher/submissions?sessionId=${sessionId}` }
+          })}
         >
           Review
         </Button>
@@ -101,7 +104,7 @@ const TeacherSubmissions = () => {
           onChange={(e) => setSessionId(e.target.value)}
           style={{ width: 300 }}
         />
-        <Button type="primary" onClick={fetchSubmissions} loading={loading}>
+       <Button type="primary" onClick={() => fetchSubmissions()} loading={loading}>
           Load Submissions
         </Button>
       </Space>
@@ -110,31 +113,7 @@ const TeacherSubmissions = () => {
         columns={columns}
         dataSource={submissions}
         rowKey={(record) => record.submission_id}
-        expandable={{
-          expandedRowRender: (record) => (
-            <Collapse accordion>
-              {Object.entries(record.answers || {}).map(([qId, answer]) => (
-                <Panel header={`Question ID: ${qId}`} key={qId}>
-                  <p>
-                    <strong>Answer:</strong> {answer}
-                  </p>
-                  <p>
-                    <strong>Hints Used:</strong>{" "}
-                    {record.interaction_analysis?.[qId]?.hints_used ?? 0}
-                  </p>
-                  <p>
-                    <strong>Probing Engaged:</strong>{" "}
-                    {record.interaction_analysis?.[qId]?.probing_engaged ?? 0}
-                  </p>
-                  <p>
-                    <strong>Time Spent:</strong>{" "}
-                    {record.interaction_analysis?.[qId]?.time_spent ?? 0} sec
-                  </p>
-                </Panel>
-              ))}
-            </Collapse>
-          ),
-        }}
+        
       />
     </div>
   );

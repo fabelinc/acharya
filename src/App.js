@@ -21,6 +21,7 @@ import TeacherSignup from './screens/auth/TeacherSignup';
 import TeacherLogin from './screens/auth/TeacherLogin';
 import StudentChatbot from './screens/StudentChatbot';
 import AboutUs from './screens/AboutUs';
+import TeacherSubmissions from './screens/TeacherSubmissions';
 
 // 🧠 Subcomponent to use AuthContext safely
 function AppRoutes() {
@@ -54,6 +55,7 @@ function AppRoutes() {
           isAuthenticated ? <ReviewSubmission /> : <Navigate to="/teacher/login" replace />
         }
       />
+      <Route path="/teacher/submissions" element={<TeacherSubmissions />} />
       <Route path="/teacher/signup" element={<TeacherSignup />} />
       <Route path="/teacher/login" element={<TeacherLogin />} />
       <Route path="/student/chatbot/:chapterId" element={<StudentChatbot />} />
