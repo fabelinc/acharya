@@ -37,6 +37,7 @@ from app.models.assignmentmodels import (  # Your Pydantic schemas (keep these a
     AssignmentResponse,
     GradedAssignmentResponse,
     ProbingQuestion as ProbingQuestionSchema,
+    AssignmentMeta,
     StudentInteraction,
     CreateAssignmentRequest,
     AssignmentQuestion as AssignmentQuestionSchema,
@@ -435,3 +436,13 @@ def get_submissions_for_session(session_id: str, db: Session = Depends(get_db)):
         }
         for sub in submissions
     ]
+
+# routers/assignments.py
+
+@router.get("/teacher/list", response_model=List[AssignmentMeta])
+def list_teacher_assignments(
+    teacher_id: str,  # or get it from token
+    db: Session = Depends(get_db)
+):
+    return db.query(Assignment).filter(Assignment.teacher_id == teacher_id).order_by(Assignment.created_at.desc()).all()
+

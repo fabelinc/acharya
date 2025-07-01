@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Table, Input, Button, message, Typography, Space } from "antd";
+import { Table, Input, Button, message, Typography, Space, Select } from "antd";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const { Title } = Typography;
 const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 
 const formatDate = (dateString) => {
   const options = {
@@ -25,6 +26,8 @@ const TeacherSubmissions = ({ sessionIdOverride }) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const [assignments, setAssignments] = useState([]);
+  const [selectedAssignmentId, setSelectedAssignmentId] = useState("");
 
   // ✅ Load from query param or sessionIdOverride
   useEffect(() => {
@@ -40,11 +43,17 @@ const TeacherSubmissions = ({ sessionIdOverride }) => {
     }
   }, [location.search, sessionIdOverride]);
 
+  useEffect(() => {
+    axios.get(`${backendURL}/api/v1/assignments/teacher/list`, {
+      params: { teacher_id: localStorage.getItem('teacherId') }
+    }).then(res => setAssignments(res.data));
+  }, []);
+
   const fetchSubmissions = async (overrideId) => {
     const idToUse = overrideId || sessionId;
 
     if (!idToUse) {
-      message.warning("Please enter a session ID");
+      message.warning("Please select an assignment");
       return;
     }
 
@@ -103,18 +112,24 @@ const TeacherSubmissions = ({ sessionIdOverride }) => {
     <div style={{ padding: "2rem" }}>
       <Title level={3}>Teacher Submissions Dashboard</Title>
 
-      <Space style={{ marginBottom: 20 }}>
-        <Input
-          placeholder="Enter Session ID"
-          value={sessionId}
-          onChange={(e) => setSessionId(e.target.value)}
-          style={{ width: 300 }}
-        />
-        <Button
-          type="primary"
-          onClick={() => fetchSubmissions()}
-          loading={loading}
+      <Space style={{ marginBottom: 20 }} wrap>
+        <Select
+          style={{ width: 400 }}
+          placeholder="Select Assignment by Title"
+          value={sessionId || undefined}
+          onChange={(value) => {
+            setSessionId(value);
+            fetchSubmissions(value);
+          }}
         >
+          {assignments.map((a) => (
+            <Option key={a.id} value={a.id}>
+              {a.title} – {formatDate(a.created_at)}
+            </Option>
+          ))}
+        </Select>
+
+        <Button type="primary" onClick={() => fetchSubmissions()} loading={loading}>
           Load Submissions
         </Button>
       </Space>
@@ -123,6 +138,7 @@ const TeacherSubmissions = ({ sessionIdOverride }) => {
         columns={columns}
         dataSource={submissions}
         rowKey={(record) => record.submission_id}
+        pagination={{ pageSize: 6 }}
       />
     </div>
   );

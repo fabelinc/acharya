@@ -95,3 +95,11 @@ class SubmissionOut(BaseModel):
     student_name: str
     responses: Dict[str, str]
     submitted_at: datetime
+
+class AssignmentMeta(BaseModel):
+    id: str
+    title: str
+    created_at: datetime
+
+    class Config:
+        orm_mode = True
