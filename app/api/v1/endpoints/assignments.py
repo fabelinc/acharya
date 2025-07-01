@@ -26,7 +26,7 @@ from app.db.models.assignment import (  # Updated imports
     Teacher
 )
 
-from services.auth_service import (
+from app.services.auth_service import (
     get_current_teacher
 )
 
