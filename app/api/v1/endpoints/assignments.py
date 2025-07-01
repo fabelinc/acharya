@@ -9,6 +9,7 @@ import io
 import docx
 import PyPDF2
 from uuid import UUID
+
 import traceback
 import json
 from app.services.llm_service_assignments import LLMAssignmentService
@@ -21,8 +22,14 @@ from app.db.models.assignment import (  # Updated imports
     ActiveAssignment,
     ProbingQuestion,
     StudentSubmission,
-    StudentSubmission
+    StudentSubmission,
+    Teacher
 )
+
+from services.auth_service import (
+    get_current_teacher
+)
+
 from app.crud.assignment import (  # Your existing CRUD operations
     create_assignment,
     get_assignment,
@@ -87,7 +94,8 @@ async def generate_assignment(
     difficulty: str = Form("intermediate"),
     question_count: int = Form(1),
     materials: Optional[UploadFile] = File(None),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_teacher: Teacher = Depends(get_current_teacher)
 ):
     # Validate inputs
     if not materials and not class_grade:
@@ -108,7 +116,8 @@ async def generate_assignment(
             status="draft",
             topic=topic,
             difficulty=difficulty,
-            class_grade=class_grade
+            class_grade=class_grade,
+            teacher_id=current_teacher.id 
         )
 
         # Generate questions via LLM service

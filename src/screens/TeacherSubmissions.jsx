@@ -46,7 +46,12 @@ const TeacherSubmissions = ({ sessionIdOverride }) => {
   useEffect(() => {
     axios.get(`${backendURL}/api/v1/assignments/teacher/list`, {
       params: { teacher_id: localStorage.getItem('teacherId') }
-    }).then(res => setAssignments(res.data));
+    }).then(res => {
+      console.log("Fetched assignments:", res.data); // ✅ Confirm this shows data
+      setAssignments(res.data);
+    }).catch(err => {
+      console.error("Failed to fetch assignments", err);
+    });
   }, []);
 
   const fetchSubmissions = async (overrideId) => {

@@ -23,9 +23,9 @@ def create_assignment(
     status: str,
     topic: str = "general",
     difficulty: str = "medium",
-    class_grade: Optional[str] = None
+    class_grade: Optional[str] = None,
+    teacher_id: Optional[UUID] = None  # <-- Add teacher_id as optional input
 ):
-    # Remove explicit assignment_id assignment
     db_assignment = Assignment(
         title=title,
         subject=subject,
@@ -33,7 +33,8 @@ def create_assignment(
         status=status,
         topic=topic,
         difficulty=difficulty,
-        class_grade=class_grade
+        class_grade=class_grade,
+        teacher_id=teacher_id  # <-- Set teacher_id
     )
     db.add(db_assignment)
     db.commit()
