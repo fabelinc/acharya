@@ -28,7 +28,7 @@ export default function TeacherLogin() {
       message.success('Login successful!');
       localStorage.setItem('teacherToken', res.data.access_token);
       localStorage.setItem('teacherName', res.data.name);
-      localStorage.setItem('teacherId', res.data.teacher_id); 
+      localStorage.setItem('teacherId', res.data.id); 
       // Redirect to intended location or default route
       const from = location.state?.from?.pathname || '/teachers';
       navigate(from, { replace: true });
