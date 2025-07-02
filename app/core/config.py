@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     algorithm: str = "HS256"
     access_token_expire_minutes: int = 30
     OPENAI_API_KEY: str
-    react_app_backend_url: str 
+    REACT_APP_BACKEND_URL: str 
     
     @property
     def openai_client(self):
