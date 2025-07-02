@@ -5,11 +5,12 @@ import os
 class Settings(BaseSettings):
     API_V1_STR: str = "/api/v1"
     app_name: str = "Aacharya"
-    database_url: str
+    DATABASE_URL: str
     secret_key: str
     algorithm: str = "HS256"
     access_token_expire_minutes: int = 30
     OPENAI_API_KEY: str
+    react_app_backend_url: str 
     
     @property
     def openai_client(self):

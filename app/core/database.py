@@ -1,5 +1,6 @@
 from typing import Dict, Any
 
+
 # In-memory storage
 quizzes_db: Dict[str, Any] = {}
 active_quizzes_db: Dict[str, Any] = {}

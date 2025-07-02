@@ -450,7 +450,7 @@ def get_submissions_for_session(session_id: str, db: Session = Depends(get_db)):
 
 @router.get("/teacher/list", response_model=List[AssignmentMeta])
 def list_teacher_assignments(
-    teacher_id: str,  # or get it from token
+    teacher_id: UUID,  # or get it from token
     db: Session = Depends(get_db)
 ):
     return db.query(Assignment).filter(Assignment.teacher_id == teacher_id).order_by(Assignment.created_at.desc()).all()

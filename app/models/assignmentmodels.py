@@ -97,7 +97,7 @@ class SubmissionOut(BaseModel):
     submitted_at: datetime
 
 class AssignmentMeta(BaseModel):
-    id: str
+    id: UUID
     title: str
     created_at: datetime
 
