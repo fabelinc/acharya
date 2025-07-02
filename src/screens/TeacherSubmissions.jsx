@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 const { Title } = Typography;
 const backendURL = process.env.REACT_APP_BACKEND_URL;
-
+const { Option } = Select;
 
 const formatDate = (dateString) => {
   const options = {
@@ -44,8 +44,9 @@ const TeacherSubmissions = ({ sessionIdOverride }) => {
   }, [location.search, sessionIdOverride]);
 
   useEffect(() => {
+    console.log("Teacher ID from localStorage:", localStorage.getItem('teacherId'));
     axios.get(`${backendURL}/api/v1/assignments/teacher/list`, {
-      params: { teacher_id: localStorage.getItem('teacherId') }
+      params: { teacher_id: "586fb175-5e4a-4afa-a7bd-2bbe3cec18e6" }
     }).then(res => {
       console.log("Fetched assignments:", res.data); // ✅ Confirm this shows data
       setAssignments(res.data);
@@ -118,21 +119,21 @@ const TeacherSubmissions = ({ sessionIdOverride }) => {
       <Title level={3}>Teacher Submissions Dashboard</Title>
 
       <Space style={{ marginBottom: 20 }} wrap>
-        <Select
-          style={{ width: 400 }}
-          placeholder="Select Assignment by Title"
-          value={sessionId || undefined}
-          onChange={(value) => {
-            setSessionId(value);
-            fetchSubmissions(value);
-          }}
-        >
-          {assignments.map((a) => (
-            <Option key={a.id} value={a.id}>
-              {a.title} – {formatDate(a.created_at)}
-            </Option>
-          ))}
-        </Select>
+      <Select
+        style={{ width: 400 }}
+        placeholder="Select Assignment by Title"
+        value={sessionId || undefined}
+        onChange={(value) => {
+          setSessionId(value);
+          fetchSubmissions(value);
+        }}
+      >
+        {assignments.map((assignment) => (
+          <Option key={assignment.id} value={assignment.id}>
+            {assignment.title}
+          </Option>
+        ))}
+      </Select>
 
         <Button type="primary" onClick={() => fetchSubmissions()} loading={loading}>
           Load Submissions

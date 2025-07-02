@@ -193,7 +193,6 @@ async def generate_assignment(
             # Commit only if we started the transaction
             if db.in_transaction():
                 db.commit()
-                # make_transient(db_assignment)  # Detach object from session
             
         except (SQLAlchemyError, InvalidRequestError) as e:
             if db.in_transaction():
