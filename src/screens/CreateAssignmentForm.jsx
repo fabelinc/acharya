@@ -15,7 +15,7 @@ export default function CreateAssignmentForm() {
   const [fileList, setFileList] = useState([]);
   const navigate = useNavigate();
   const backendURL = process.env.REACT_APP_BACKEND_URL;
-
+  const token = localStorage.getItem('token');
   const fileUploaded = fileList.length > 0;
 
   const handleSubmit = async () => {
@@ -51,9 +51,13 @@ export default function CreateAssignmentForm() {
       const res = await fetch(`${backendURL}/api/v1/assignments/generate`, {
         method: 'POST',
         body: formData,
-        // Don't set Content-Type header - let the browser set it automatically
+        headers: {
+          'Authorization': `Bearer ${token}`
+          // Do NOT set 'Content-Type' — browser handles it for FormData
+        },
+        credentials: 'include' // Optional: only if you're using cookies for auth
       });
-  
+      
       if (!res.ok) {
         const errorData = await res.json().catch(() => ({}));
         throw new Error(errorData.message || 'Request failed');
