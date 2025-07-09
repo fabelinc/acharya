@@ -57,25 +57,28 @@ const TeacherSubmissions = ({ sessionIdOverride }) => {
 
   const fetchSubmissions = async (overrideId) => {
     const idToUse = overrideId || sessionId;
-
+  
     if (!idToUse) {
       message.warning("Please select an assignment");
       return;
     }
-
+  
     setLoading(true);
+    setSubmissions([]); // ✅ clear old data immediately
+  
     try {
       const res = await axios.get(`${backendURL}/api/v1/assignments/teacher/allsubmissions/${idToUse}`);
       setSubmissions(res.data);
-      setError(null);   
+      setError(null);
     } catch (err) {
-      setSubmissions([]);  
       console.error(err);
+      setError("No submissions found for this assignment."); // optional: use a readable error
       message.error("Failed to fetch submissions");
     } finally {
       setLoading(false);
     }
   };
+  
 
   const columns = [
     {
