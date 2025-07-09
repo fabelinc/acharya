@@ -425,11 +425,11 @@ async def get_submissions(assignment_id: UUID, db: Session = Depends(get_db)):
         "submissions": submissions
     }
 
-@router.get("/teacher/allsubmissions/{session_id}")
-def get_submissions_for_session(session_id: str, db: Session = Depends(get_db)):
-    submissions = db.query(StudentSubmission).filter_by(session_id=session_id).all()
+@router.get("/teacher/allsubmissions/{assignment_id}")
+def get_submissions_for_assignment(assignment_id: str, db: Session = Depends(get_db)):
+    submissions = db.query(StudentSubmission).filter_by(assignment_id=assignment_id).all()
     if not submissions:
-        raise HTTPException(status_code=404, detail="No submissions found for this session.")
+        raise HTTPException(status_code=404, detail="No submissions found for this assignment.")
 
     return [
         {
@@ -444,6 +444,7 @@ def get_submissions_for_session(session_id: str, db: Session = Depends(get_db)):
         }
         for sub in submissions
     ]
+
 
 # routers/assignments.py
 

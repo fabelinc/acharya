@@ -15,7 +15,7 @@ export default function CreateAssignmentForm() {
   const [fileList, setFileList] = useState([]);
   const navigate = useNavigate();
   const backendURL = process.env.REACT_APP_BACKEND_URL;
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('teacherToken');
   const fileUploaded = fileList.length > 0;
 
   const handleSubmit = async () => {
@@ -57,7 +57,7 @@ export default function CreateAssignmentForm() {
         },
         credentials: 'include' // Optional: only if you're using cookies for auth
       });
-      
+
       if (!res.ok) {
         const errorData = await res.json().catch(() => ({}));
         throw new Error(errorData.message || 'Request failed');
