@@ -67,7 +67,9 @@ const TeacherSubmissions = ({ sessionIdOverride }) => {
     try {
       const res = await axios.get(`${backendURL}/api/v1/assignments/teacher/allsubmissions/${idToUse}`);
       setSubmissions(res.data);
+      setError(null);   
     } catch (err) {
+      setSubmissions([]);  
       console.error(err);
       message.error("Failed to fetch submissions");
     } finally {
