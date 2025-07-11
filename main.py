@@ -25,7 +25,7 @@ def create_app() -> FastAPI:
         allow_origins=[
             "http://localhost:3000",           # local dev
             "https://acharya-chi.vercel.app",
-            "https://www.fabelinc.com/",
+            "https://www.fabelinc.com",
             "https://lucky-axolotl-158dbd.netlify.app" # ✅ add your deployed Netlify domain here
         ],
         allow_credentials=True,
