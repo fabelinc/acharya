@@ -4,6 +4,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.responses import JSONResponse
 from app.api.v1.email_utils import send_reset_email
 from fastapi import BackgroundTasks
+import os
 
 from app.services.auth_service import (
     authenticate_teacher, create_access_token, get_password_hash
@@ -14,6 +15,7 @@ from app.database import get_db
 from datetime import timedelta
 from pydantic import BaseModel, EmailStr
 import uuid
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000")
 
 class TeacherSignup(BaseModel):
     email: EmailStr
@@ -72,7 +74,7 @@ def forgot_password(
             data={"sub": user.email},
             expires_delta=timedelta(minutes=30)
         )
-        reset_url = f"http://localhost:3000/teacher/reset-password?token={reset_token}"
+        reset_url = f"{FRONTEND_URL}/teacher/reset-password?token={reset_token}"
         background_tasks.add_task(send_reset_email, user.email, reset_url)
 
     # Always return success to avoid revealing registered emails
