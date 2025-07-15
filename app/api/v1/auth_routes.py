@@ -2,6 +2,9 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.responses import JSONResponse
+from app.api.v1.email_utils import send_reset_email
+from fastapi import BackgroundTasks
+
 from app.services.auth_service import (
     authenticate_teacher, create_access_token, get_password_hash
 )
@@ -16,6 +19,11 @@ class TeacherSignup(BaseModel):
     email: EmailStr
     password: str
     name: str
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+class ResetPasswordRequest(BaseModel):
+    token: str
+    new_password: str
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -51,3 +59,41 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
         "name": user.name,  # assuming user.name is the teacher's name
         "id": str(user.id)
         }
+
+@router.post("/forgot-password")
+def forgot_password(
+    request: ForgotPasswordRequest,
+    background_tasks: BackgroundTasks,
+    db: Session = Depends(get_db)
+):
+    user = db.query(Teacher).filter(Teacher.email == request.email).first()
+    if user:
+        reset_token = create_access_token(
+            data={"sub": user.email},
+            expires_delta=timedelta(minutes=30)
+        )
+        reset_url = f"http://localhost:3000/teacher/reset-password?token={reset_token}"
+        background_tasks.add_task(send_reset_email, user.email, reset_url)
+
+    # Always return success to avoid revealing registered emails
+    return {"msg": "If this email is registered, a reset link will be sent"}
+
+@router.post("/reset-password")
+def reset_password(data: ResetPasswordRequest, db: Session = Depends(get_db)):
+    from app.services.auth_service import verify_token
+
+    try:
+        payload = verify_token(data.token)
+        email = payload.get("sub")
+        if not email:
+            raise HTTPException(status_code=400, detail="Invalid token")
+
+        user = db.query(Teacher).filter(Teacher.email == email).first()
+        if not user:
+            raise HTTPException(status_code=404, detail="User not found")
+
+        user.hashed_password = get_password_hash(data.new_password)
+        db.commit()
+        return {"msg": "Password has been reset successfully"}
+    except Exception as e:
+        raise HTTPException(status_code=400, detail="Invalid or expired token")

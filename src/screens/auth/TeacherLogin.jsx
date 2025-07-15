@@ -51,7 +51,7 @@ export default function TeacherLogin() {
             { type: 'email', message: 'Please enter a valid email!' }
           ]}
         >
-          <Input placeholder="teacher@example.com" />
+          <Input placeholder="abc@gmail.com" />
         </Form.Item>
         <Form.Item 
           name="password" 
@@ -66,6 +66,11 @@ export default function TeacherLogin() {
         <Button type="primary" htmlType="submit" block loading={false}>
           Log In
         </Button>
+        <p style={{ marginTop: 8, textAlign: 'right' }}>
+          <a href="/teacher/forgot-password" style={{ color: '#1677ff' }}>
+            Forgot Password?
+          </a>
+        </p>
         <p style={{ marginTop: 16, textAlign: 'center' }}>
           New to Aacharya?{" "}
           <a href="/teacher/signup" style={{ color: '#1677ff' }}>
