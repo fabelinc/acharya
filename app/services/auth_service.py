@@ -2,7 +2,8 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from passlib.context import CryptContext
 from jose import jwt, JWTError
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
+import os
 from sqlalchemy.orm import Session
 import uuid
 from pydantic import BaseModel
@@ -75,3 +76,12 @@ def get_current_teacher(token: str = Depends(oauth2_scheme), db: Session = Depen
     if user is None:
         raise HTTPException(status_code=401, detail="Invalid token")
     return user
+
+def verify_token(token: str):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        if payload.get("exp") and datetime.fromtimestamp(payload["exp"]) < datetime.now(timezone.utc):
+            raise HTTPException(status_code=401, detail="Token expired")
+        return payload
+    except JWTError:
+        raise HTTPException(status_code=401, detail="Invalid token")
