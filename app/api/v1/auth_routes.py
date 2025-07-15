@@ -81,23 +81,31 @@ def forgot_password(
     return {"msg": "If this email is registered, a reset link will be sent"}
 
 @router.post("/reset-password")
-def reset_password(data: ResetPasswordRequest, db: Session = Depends(get_db)):
-    print("[DEBUG] Token received:", data.token)
-    print("[DEBUG] New password received:", data.new_password)
+def reset_password(data: ResetPasswordRequest, db: Session = Depends(get_db())):
     from app.services.auth_service import verify_token
 
     try:
+        print("[DEBUG] Token received:", data.token)
+        print("[DEBUG] New password received:", data.new_password)
+
         payload = verify_token(data.token)
+        print("[DEBUG] Token payload:", payload)
+
         email = payload.get("sub")
         if not email:
+            print("[DEBUG] No email in token")
             raise HTTPException(status_code=400, detail="Invalid token")
 
         user = db.query(Teacher).filter(Teacher.email == email).first()
         if not user:
+            print("[DEBUG] No user found for email:", email)
             raise HTTPException(status_code=404, detail="User not found")
 
         user.hashed_password = get_password_hash(data.new_password)
         db.commit()
+        print("[DEBUG] Password reset successful")
         return {"msg": "Password has been reset successfully"}
+    
     except Exception as e:
+        print("[DEBUG] Password reset failed with error:", str(e))
         raise HTTPException(status_code=400, detail="Invalid or expired token")

@@ -79,9 +79,19 @@ def get_current_teacher(token: str = Depends(oauth2_scheme), db: Session = Depen
 
 def verify_token(token: str):
     try:
+        print("[DEBUG] Decoding token...")
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        if payload.get("exp") and datetime.fromtimestamp(payload["exp"]) < datetime.now(timezone.utc):
-            raise HTTPException(status_code=401, detail="Token expired")
+        print("[DEBUG] Payload decoded:", payload)
+
+        if payload.get("exp"):
+            expire_time = datetime.fromtimestamp(payload["exp"], tz=timezone.utc)
+            now = datetime.now(timezone.utc)
+            print("[DEBUG] Expiration check:", expire_time, "<", now)
+            if expire_time < now:
+                raise HTTPException(status_code=401, detail="Token expired")
+
         return payload
-    except JWTError:
-        raise HTTPException(status_code=401, detail="Invalid token")
+
+    except JWTError as e:
+        print("[DEBUG] JWT decode failed:", str(e))
+        raise HTTPException(status_code=400, detail="Invalid or expired token")
