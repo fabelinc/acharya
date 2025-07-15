@@ -82,6 +82,8 @@ def forgot_password(
 
 @router.post("/reset-password")
 def reset_password(data: ResetPasswordRequest, db: Session = Depends(get_db)):
+    print("[DEBUG] Token received:", data.token)
+    print("[DEBUG] New password received:", data.new_password)
     from app.services.auth_service import verify_token
 
     try:
