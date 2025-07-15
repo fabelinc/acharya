@@ -11,7 +11,7 @@ from typing import Dict, List, Optional, Union
 from app.database import get_db
 from app.db.models.assignment import Teacher  # Assuming you have a `Teacher` model
 
-SECRET_KEY = "your-secret-key"
+SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
