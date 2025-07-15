@@ -22,6 +22,8 @@ import TeacherLogin from './screens/auth/TeacherLogin';
 import StudentChatbot from './screens/StudentChatbot';
 import AboutUs from './screens/AboutUs';
 import TeacherSubmissions from './screens/TeacherSubmissions';
+import ForgotPassword from './screens/auth/ForgotPassword';
+import ResetPassword from './screens/auth/ResetPassword';
 
 // 🧠 Subcomponent to use AuthContext safely
 function AppRoutes() {
@@ -58,6 +60,8 @@ function AppRoutes() {
       <Route path="/teacher/submissions" element={<TeacherSubmissions />} />
       <Route path="/teacher/signup" element={<TeacherSignup />} />
       <Route path="/teacher/login" element={<TeacherLogin />} />
+      <Route path="/teacher/forgot-password" element={<ForgotPassword />} />
+      <Route path="/teacher/reset-password" element={<ResetPassword />} />
       <Route path="/student/chatbot/:chapterId" element={<StudentChatbot />} />
       <Route path="/about" element={<AboutUs />} />
     </Routes>
