@@ -47,7 +47,7 @@ export default function CreateAssignmentForm() {
       for (let [key, value] of formData.entries()) {
         console.log(key, value);
       }
-  
+      const token = localStorage.getItem('teacherToken');
       const res = await fetch(`${backendURL}/api/v1/assignments/generate`, {
         method: 'POST',
         body: formData,
@@ -66,7 +66,7 @@ export default function CreateAssignmentForm() {
       const responseData = await res.json();
       message.success('Assignment generated!');
       // Store token in localStorage
-      localStorage.setItem('teacherToken', responseData.access_token);
+      // localStorage.setItem('teacherToken', responseData.access_token);
       
       navigate(`/assignments/publish/${responseData.assignment_id}`, {
         state: {
