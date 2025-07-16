@@ -96,7 +96,7 @@ export default function CreateAssignmentForm() {
   };
   
   return (
-    <Card title="Create an Assignment — Upload Custom Materials or Generate Automatically with AI." style={{ maxWidth: 600, margin: '0 auto' }}>
+    <Card title="Create an Assignment — Upload Materials or Generate with AI." style={{ maxWidth: 600, margin: '0 auto' }}>
       <Spin spinning={loading} tip="Generating Assignment...">
       <Form form={form} layout="vertical" initialValues={{
           subject: 'math',
