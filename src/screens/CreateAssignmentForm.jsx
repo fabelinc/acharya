@@ -116,6 +116,13 @@ export default function CreateAssignmentForm() {
             File uploaded. Select question count.
           </div>
         )}
+        <Form.Item
+                  name="question_count"
+                  label="Question Count"
+                  rules={[{ type: 'number', min: 1, max: 50 }]}
+                >
+                  <InputNumber min={1} max={50} style={{ width: '100%' }} />
+                </Form.Item>
 
         <Form.Item
           name="class_grade"
@@ -155,14 +162,6 @@ export default function CreateAssignmentForm() {
             <Option value="intermediate">Intermediate</Option>
             <Option value="hard">Hard</Option>
           </Select>
-        </Form.Item>
-
-        <Form.Item
-          name="question_count"
-          label="Question Count"
-          rules={[{ type: 'number', min: 1, max: 50 }]}
-        >
-          <InputNumber min={1} max={50} style={{ width: '100%' }} />
         </Form.Item>
 
         <Form.Item>
