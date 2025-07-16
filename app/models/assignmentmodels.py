@@ -31,7 +31,7 @@ class AssignmentResponse(BaseModel):
 class AssignmentQuestion(BaseModel):
     id: str
     text: str
-    answer: str
+    answer: Union[str, List[str], List[dict]]
     explanation: Optional[str] = None
     type: Optional[str] = None  # "conceptual", "procedural", etc.
 
