@@ -2,9 +2,8 @@
 from sqlalchemy import Column, String, Integer, Text, ForeignKey, DateTime, Boolean
 from sqlalchemy.orm import relationship, declarative_base
 from datetime import datetime
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.dialects.postgresql import UUID, JSONB
 import uuid
-from sqlalchemy import text, JSON
 from datetime import datetime, timezone
 
 Base = declarative_base()
@@ -29,10 +28,10 @@ class Assignment(Base):
 class AssignmentQuestion(Base):
     __tablename__ = "assignment_questions"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, index=True)
+    id = Column(UUID(as_uuid=True), primary_key=True)
     assignment_id = Column(UUID(as_uuid=True), ForeignKey("assignments.id"), nullable=False)
     text = Column(Text, nullable=False)
-    answer = Column(Text, nullable=False)
+    answer = Column(JSONB, nullable=False)
     explanation = Column(Text, nullable=True)
     type = Column(String, nullable=True)
     question_order = Column(Integer, nullable=False, default=0)
@@ -42,8 +41,8 @@ class AssignmentQuestion(Base):
 class ActiveAssignment(Base):
     __tablename__ = "active_assignments"
 
-    session_id = Column(String, primary_key=True, index=True)
-    assignment_id = Column(UUID(as_uuid=True), ForeignKey("assignments.id"), nullable=False)
+    session_id = Column(UUID(as_uuid=True), primary_key=True)
+    assignment_id = Column(UUID(as_uuid=True), ForeignKey("assignments.id"), primary_key=True)
     teacher_id = Column(String, nullable=False)
     activated_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
 
@@ -56,14 +55,14 @@ class StudentSubmission(Base):
 
     # Foreign Keys
     assignment_id = Column(UUID(as_uuid=True), ForeignKey("assignments.id"), nullable=False)
-    session_id = Column(String, ForeignKey("active_assignments.session_id"), nullable=False)
+    session_id = Column(UUID(as_uuid=True), ForeignKey("active_assignments.session_id"), nullable=False)
 
     # Fields
     student_id = Column(String, nullable=False)
     score = Column(Integer, nullable=False)
-    answers_json = Column(JSON, nullable=False)
-    interactions_json = Column(JSON, nullable=False)
-    time_spent_json = Column(JSON, nullable=False)
+    answers_json = Column(JSONB, nullable=False)
+    interactions_json = Column(JSONB, nullable=False)
+    time_spent_json = Column(JSONB, nullable=False)
     submitted_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
     teacher_score = Column(Integer, nullable=True)  # ✅ Add this
     is_grade_overridden = Column(Boolean, default=False) 
