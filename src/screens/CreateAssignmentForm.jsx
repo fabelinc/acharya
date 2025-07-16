@@ -96,7 +96,7 @@ export default function CreateAssignmentForm() {
   };
   
   return (
-    <Card title="Create Assignment - Use your own material or generate one with AI." style={{ maxWidth: 600, margin: '0 auto' }}>
+    <Card title="Create an Assignment — Upload Custom Materials or Generate Automatically with AI." style={{ maxWidth: 600, margin: '0 auto' }}>
       <Spin spinning={loading} tip="Generating Assignment...">
       <Form form={form} layout="vertical" initialValues={{
           subject: 'math',
@@ -113,7 +113,7 @@ export default function CreateAssignmentForm() {
 
         {fileUploaded && (
           <div style={{ marginBottom: 16, color: '#888' }}>
-            File uploaded. Other options are disabled.
+            File uploaded. Select question count.
           </div>
         )}
 
@@ -162,7 +162,7 @@ export default function CreateAssignmentForm() {
           label="Question Count"
           rules={[{ type: 'number', min: 1, max: 50 }]}
         >
-          <InputNumber min={1} max={50} style={{ width: '100%' }} disabled={fileUploaded} />
+          <InputNumber min={1} max={50} style={{ width: '100%' }} />
         </Form.Item>
 
         <Form.Item>
