@@ -1,9 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import IntegrityError
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.responses import JSONResponse
 from app.api.v1.email_utils import send_reset_email
 from fastapi import BackgroundTasks
+from schemas import SignupSchema
+from utils import hash_password
+from datetime import datetime
 import os
 
 from app.services.auth_service import (
@@ -30,19 +34,26 @@ class ResetPasswordRequest(BaseModel):
 router = APIRouter(prefix="/auth", tags=["auth"])
 
 @router.post("/signup")
-def signup(data: TeacherSignup, db: Session = Depends(get_db)):
-    if db.query(Teacher).filter(Teacher.email == data.email).first():
-        raise HTTPException(status_code=400, detail="Email already registered")
+def signup(signup_data: SignupSchema, db: Session = Depends(get_db)):
+    if db.query(Teacher).filter(Teacher.email == signup_data.email.lower()).first():
+        raise HTTPException(status_code=400, detail="Email is already registered.")
 
     new_teacher = Teacher(
-        id=str(uuid.uuid4()),
-        email=data.email,
-        name=data.name,
-        hashed_password=get_password_hash(data.password)
+        id=uuid.uuid4(),
+        name=signup_data.name,
+        email=signup_data.email.lower(),
+        hashed_password=hash_password(signup_data.password),
+        created_at=datetime.utcnow(),
     )
-    db.add(new_teacher)
-    db.commit()
-    return {"msg": "Signup successful"}
+
+    try:
+        db.add(new_teacher)
+        db.commit()
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(status_code=400, detail="Email is already registered.")
+
+    return {"message": "Signup successful"}
 
 @router.options("/signup")
 async def signup_options():

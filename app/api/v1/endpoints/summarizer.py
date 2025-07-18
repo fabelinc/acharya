@@ -24,12 +24,15 @@ ALLOWED_FILE_TYPES = ['.txt', '.pdf', '.docx']
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB
 UPLOAD_DIR = "chatbot_sources"
 SUMMARY_PROMPT = """
-You are an expert teaching assistant creating {complexity} complexity summaries of educational content.
-Create a well-structured summary that:
-1. Preserves key concepts and terminology
-2. Maintains the original meaning
-3. Is appropriate for students at this level
-4. Uses clear, concise language
+You are an expert educational assistant. Create a clear, structured summary of the given content, tailored to a {complexity} complexity level.
+
+Your summary must:
+- Preserve all key ideas and terminology
+- Be understandable at the specified complexity
+- Use numbered or bulleted lists where helpful
+- Avoid redundancy
+
+Return only the summary, no preamble or explanation.
 """
 
 class SummaryRequest(BaseModel):
@@ -61,12 +64,12 @@ async def sanitize_text(text: str) -> str:
     text = re.sub(r'[ \t]+', ' ', text)  # Multiple spaces/tabs to single space
     return text.strip()
 
-async def handle_file_upload(file: Union[str, UploadFile]) -> str:
-    """Handle both pre-uploaded files and new uploads"""
-    if isinstance(file, str):  # Already uploaded file path
-        return await read_file_content(file)
-    else:  # New UploadFile
-        return await process_upload_file(file)
+# async def handle_file_upload(file: Union[str, UploadFile]) -> str:
+#     """Handle both pre-uploaded files and new uploads"""
+#     if isinstance(file, str):  # Already uploaded file path
+#         return await read_file_content(file)
+#     else:  # New UploadFile
+#         return await process_upload_file(file)
 
 async def process_upload_file(file: UploadFile) -> str:
     """Process a newly uploaded file"""
