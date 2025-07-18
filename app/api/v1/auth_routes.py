@@ -5,8 +5,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.responses import JSONResponse
 from app.api.v1.email_utils import send_reset_email
 from fastapi import BackgroundTasks
-from utils import hash_password
-from datetime import datetime
+from datetime import datetime, timezone
 import os
 
 from app.services.auth_service import (
@@ -51,8 +50,8 @@ def signup(
         id=uuid.uuid4(),
         name=name,
         email=email,
-        hashed_password=hash_password(password),
-        created_at=datetime.utcnow(),
+        hashed_password=get_password_hash(password),
+        created_at=datetime.now(timezone.utc),
     )
 
     # Insert into database
