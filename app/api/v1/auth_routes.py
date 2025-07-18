@@ -1,11 +1,10 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Form, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.responses import JSONResponse
 from app.api.v1.email_utils import send_reset_email
 from fastapi import BackgroundTasks
-from schemas import SignupSchema
 from utils import hash_password
 from datetime import datetime
 import os
@@ -34,18 +33,29 @@ class ResetPasswordRequest(BaseModel):
 router = APIRouter(prefix="/auth", tags=["auth"])
 
 @router.post("/signup")
-def signup(signup_data: SignupSchema, db: Session = Depends(get_db)):
-    if db.query(Teacher).filter(Teacher.email == signup_data.email.lower()).first():
+def signup(
+    name: str = Form(...),
+    email: str = Form(...),
+    password: str = Form(...),
+    db: Session = Depends(get_db)
+):
+    # Normalize email
+    email = email.lower()
+
+    # Check if email already exists
+    if db.query(Teacher).filter(Teacher.email == email).first():
         raise HTTPException(status_code=400, detail="Email is already registered.")
 
+    # Create new teacher object
     new_teacher = Teacher(
         id=uuid.uuid4(),
-        name=signup_data.name,
-        email=signup_data.email.lower(),
-        hashed_password=hash_password(signup_data.password),
+        name=name,
+        email=email,
+        hashed_password=hash_password(password),
         created_at=datetime.utcnow(),
     )
 
+    # Insert into database
     try:
         db.add(new_teacher)
         db.commit()
