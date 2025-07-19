@@ -44,11 +44,18 @@ const TeacherSubmissions = ({ sessionIdOverride }) => {
   }, [location.search, sessionIdOverride]);
 
   useEffect(() => {
-    console.log("Teacher ID from localStorage:", localStorage.getItem('teacherId'));
+    const teacherId = localStorage.getItem('teacherId');
+    if (!teacherId) {
+      message.error("Teacher ID not found. Please log in again.");
+      return;
+    }
+  
+    console.log("Teacher ID from localStorage:", teacherId);
+  
     axios.get(`${backendURL}/api/v1/assignments/teacher/list`, {
       params: { teacher_id: teacherId }
     }).then(res => {
-      console.log("Fetched assignments:", res.data); // ✅ Confirm this shows data
+      console.log("Fetched assignments:", res.data);
       setAssignments(res.data);
     }).catch(err => {
       console.error("Failed to fetch assignments", err);
