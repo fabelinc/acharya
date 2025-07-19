@@ -26,6 +26,7 @@ class LLMAssignmentService:
         subject: str,
         difficulty: str,
         question_count: int,
+        class_grade: Optional[str] = None,
         context: str = ""
     ) -> Dict:
         """Generate core assignment questions with JSON response"""

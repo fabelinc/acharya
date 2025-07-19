@@ -126,7 +126,7 @@ export default function CreateAssignmentForm() {
 
         <Form.Item
           name="class_grade"
-          label="Class / Grade"
+          label="Class / Exam"
           rules={fileUploaded ? [] : [{ required: true, message: 'Please select the class or grade' }]}
         >
           <Select disabled={fileUploaded}>
@@ -137,6 +137,9 @@ export default function CreateAssignmentForm() {
             <Option value="10">Class 10</Option>
             <Option value="11">Class 11</Option>
             <Option value="12">Class 12</Option>
+            <Option value="IIT">IIT/JEE</Option>
+            <Option value="CUET">CUET</Option>
+            <Option value="NEET">NEET</Option>
           </Select>
         </Form.Item>
 
@@ -148,7 +151,8 @@ export default function CreateAssignmentForm() {
           <Select disabled={fileUploaded}>
             <Option value="math">Math</Option>
             <Option value="Physics">Physics</Option>
-            <Option value="science">Chemistry</Option>
+            <Option value="Chemistry">Chemistry</Option>
+            <Option value="Biology">Biology</Option>
           </Select>
         </Form.Item>
 
