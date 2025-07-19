@@ -30,7 +30,7 @@ class LLMAssignmentService:
         context: str = ""
     ) -> Dict:
         """Generate core assignment questions with JSON response"""
-        prompt = f"""Create a {difficulty} level assignment on '{title}' ({subject}).
+        prompt = f"""Create a {difficulty} level assignment for {class_grade} students on '{title}' ({subject}).
         Include {question_count} questions with:
         - Clear problem statements
         - Step-by-step solutions
