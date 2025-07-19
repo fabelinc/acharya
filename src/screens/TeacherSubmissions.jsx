@@ -46,7 +46,7 @@ const TeacherSubmissions = ({ sessionIdOverride }) => {
   useEffect(() => {
     console.log("Teacher ID from localStorage:", localStorage.getItem('teacherId'));
     axios.get(`${backendURL}/api/v1/assignments/teacher/list`, {
-      params: { teacher_id: "586fb175-5e4a-4afa-a7bd-2bbe3cec18e6" }
+      params: { teacher_id: teacherId }
     }).then(res => {
       console.log("Fetched assignments:", res.data); // ✅ Confirm this shows data
       setAssignments(res.data);
