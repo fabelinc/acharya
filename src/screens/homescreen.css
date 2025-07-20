@@ -24,9 +24,16 @@ body {
 
 /* Carousel */
 .carousel-fixed-height {
-  height: 450px;
+  height: 500px;
   overflow: hidden;
 }
+
+@media (max-width: 480px) {
+  .carousel-fixed-height {
+    height: 250px; /* or whatever fits better on mobile */
+  }
+}
+
 .carousel-fixed-height .slick-slide,
 .carousel-fixed-height .slick-slide > div {
   height: 100% !important;
