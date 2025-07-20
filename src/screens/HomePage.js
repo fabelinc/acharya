@@ -110,14 +110,14 @@ const LandingPage = () => {
         >
         <Carousel autoplay effect="fade" dots className="carousel-fixed-height">
           {heroSlides.map((slide, index) => (
-            <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[550px] relative">
+            <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] relative">
             <img
               src={slide.image}
               alt={slide.caption}
               className="w-full h-full object-cover"
               style={{ zIndex: 1 }}
             />
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-full px-4 max-w-xs sm:max-w-md text-center z-10">
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-full px-4 max-w-xs sm:max-w-md text-center z-1">
               <div className="bg-black bg-opacity-60 px-4 py-2 rounded-md shadow-md">
                 <Title level={4} className="text-white text-sm sm:text-base md:text-lg font-medium m-0">
                   {slide.caption}
