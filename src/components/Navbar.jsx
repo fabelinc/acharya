@@ -106,6 +106,20 @@ const Navbar = () => {
                 bodyStyle={{ padding: 0, background: '#3a1c71', color: 'white' }}
                 headerStyle={{ background: '#3a1c71', color: 'white' }}
               >
+                {/* Add breadcrumb bar */}
+                <div style={{ padding: '12px 16px', background: '#3a1c71', color: 'white' }}>
+                  <Breadcrumb
+                    items={[
+                      { title: 'Home' },
+                      { title: 'Teacher' },
+                      { title: 'Login' },
+                    ]}
+                    style={{
+                      color: 'white',
+                    }}
+                  />
+                </div>
+
                 {renderMenuItems()}
               </Drawer>
             </>
