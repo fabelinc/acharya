@@ -24,10 +24,19 @@ import AboutUs from './screens/AboutUs';
 import TeacherSubmissions from './screens/TeacherSubmissions';
 import ForgotPassword from './screens/auth/ForgotPassword';
 import ResetPassword from './screens/auth/ResetPassword';
+import logo from './public/Aacharya.png';
 
 // 🧠 Subcomponent to use AuthContext safely
 function AppRoutes() {
   const { isAuthenticated, user } = React.useContext(AuthContext);
+
+function Header() {
+    return (
+      <header>
+        <img src={logo} alt="Aacharya Logo" style={{ height: '50px' }} />
+      </header>
+    );
+  }
 
   return (
     <Routes>
