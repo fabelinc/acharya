@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, Layout, Drawer, Button } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '../Images/aacharyalogo.png';
+import logo from '../Images/AACHARYA_logo_trnsprnt.png';
 
 const { Header } = Layout;
 
