@@ -24,7 +24,7 @@ import AboutUs from './screens/AboutUs';
 import TeacherSubmissions from './screens/TeacherSubmissions';
 import ForgotPassword from './screens/auth/ForgotPassword';
 import ResetPassword from './screens/auth/ResetPassword';
-import logo from './public/Aacharya.png';
+import logo from '/public/AAcharya.png';
 
 // 🧠 Subcomponent to use AuthContext safely
 function AppRoutes() {
