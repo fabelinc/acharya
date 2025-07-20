@@ -73,12 +73,13 @@ const Navbar = () => {
           }}
         >
           {/* Logo */}
-          <Link to="/" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', height: '350%', justifyContent: 'flex-start' }}>
+          <Link to="/" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', height: '400%', justifyContent: 'flex-start' }}>
             <img
               src={logo}
               alt="Aacharya Logo"
               style={{
-                height: '200px',
+                
+                height: '700px',
                 objectFit: 'contain',
                 background: 'transparent',
               }}

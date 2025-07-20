@@ -27,19 +27,19 @@ const heroSlides = [
 
 const features = [
   {
-    title: '📝 Assignment Generator',
+    title: '🗒️ Assignment Generator',
     description: `Say goodbye to hours spent crafting questions manually. With Aacharya's Assignment Generator, simply upload your class notes or select the grade and subject — and our AI creates a complete assignment for you. Each question is tailored to the topic and difficulty you choose, making it easy to generate practice sheets, homework, or in-class tests with just a few clicks.`,
   },
   {
-    title: '🧩 Interactive Hints',
+    title: '🪄 Interactive Hints',
     description: `Students often need just a nudge to get to the right answer. Aacharya's unique Socratic Hint System gives them guiding prompts instead of final answers. When a student clicks "Show Hint," they receive context-aware probing questions that encourage critical thinking and deeper learning — helping them become more independent problem-solvers.`,
   },
   {
-    title: '📊 Teacher Dashboard',
+    title: '📈 Teacher Dashboard',
     description: `Your time is valuable — and so is your insight. The Aacharya Teacher Dashboard consolidates all your student data in one place. View performance trends across assignments, track individual student progress, and identify where learners are struggling. Visualizations like bar charts, tables, and progress summaries make it easy to stay informed and take action.The Aacharya Teacher Dashboard consolidates all your student data in one place. View trends, track progress, and identify learning gaps quickly.`,
   },
   {
-    title: '✅ AI Grading + Manual Override',
+    title: '📋✏️ AI Grading + Manual Override',
     description: `Let AI do the first round of grading — from multiple choice to written answers — and save yourself hours of checking. You always stay in control: review AI-graded responses and override scores wherever needed. The interface is simple and intuitive, enabling a seamless blend of automation and educator oversight.et AI do the first round of grading and save yourself hours of checking. Override scores wherever needed — blending automation and educator oversight.`,
   },
   {
@@ -64,7 +64,7 @@ const LandingPage = () => {
           transition={{ duration: 0.8 }}
         >
           <Title className="text-3xl sm:text-5xl font-semibold text-edu-primary dark:text-edu-primary mb-6 leading-tight tracking-tight">
-            Aacharya: Your AI-Powered Teaching Assistant
+            Your AI-Powered Teaching Assistant
           </Title>
 
           <Paragraph className="text-base sm:text-xl text-gray-600 dark:text-gray-300 font-light leading-relaxed tracking-wide max-w-2xl mx-auto mt-4">
@@ -72,7 +72,7 @@ const LandingPage = () => {
           </Paragraph>
 
           <Paragraph className="text-sm sm:text-lg text-gray-700 dark:text-gray-400 font-light leading-relaxed tracking-wide max-w-3xl mx-auto mt-6">
-          Aacharya helps modern educators generate assignments, deliver guided hints, grade responses, and track student performance — all from one streamlined interface.
+          We help modern educators generate assignments, deliver guided hints, grade responses, and track student performance — all from one streamlined interface.
           Whether you're in a classroom, tutoring center, or online program, Aacharya adapts to your style and scales with your needs.
           </Paragraph>
 
@@ -86,10 +86,16 @@ const LandingPage = () => {
               <Button
                 type="primary"
                 size="large"
-                className="bg-edu-primary border-none text-white hover:bg-edu-primary-dark shadow-lg px-8 py-3 rounded-xl text-base font-medium tracking-wide"
+                style={{
+                  background: 'linear-gradient(to right, #6366F1, #8B5CF6, #EC4899)',
+                  color: 'white',
+                  border: 'none',
+                  marginBottom: '24px' }}
+                className="mb-6 bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#EC4899] text-white border-none shadow-lg px-8 py-3 rounded-xl text-base font-medium tracking-wide"
               >
                 Get Started
               </Button>
+              <br></br>
             </Link>
           </motion.div>
         </motion.div>
@@ -102,28 +108,32 @@ const LandingPage = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <Carousel autoplay effect="fade" dots>
-            {heroSlides.map((slide, index) => (
-              <div key={index} className="relative bg-black w-full">
-                <div className="w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden">
-                  <img src={slide.image} alt={slide.caption} className="w-full h-full object-cover" />
-                </div>
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-full px-4 max-w-xs sm:max-w-md text-center">
-                  <div className="bg-black bg-opacity-60 px-4 py-2 rounded-md shadow-md">
-                    <Title level={4} className="text-white text-sm sm:text-base md:text-lg font-medium m-0">
-                      {slide.caption}
-                    </Title>
-                  </div>
+        <Carousel autoplay effect="fade" dots className="carousel-fixed-height">
+          {heroSlides.map((slide, index) => (
+            <div key={index} className="relative w-full h-full">
+              <div className="w-full h-full overflow-hidden">
+                <img
+                  src={slide.image}
+                  alt={slide.caption}
+                  className="carousel-image"
+                />
+              </div>
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-full px-4 max-w-xs sm:max-w-md text-center">
+                <div className="bg-black bg-opacity-60 px-4 py-2 rounded-md shadow-md">
+                  <Title level={4} className="text-white text-sm sm:text-base md:text-lg font-medium m-0">
+                    {slide.caption}
+                  </Title>
                 </div>
               </div>
-            ))}
-          </Carousel>
+            </div>
+          ))}
+        </Carousel>
         </motion.div>
 
         {/* Features */}
-        <div className="mt-24 space-y-20 sm:space-y-24">
+        <div className="mt-24 space-y-10 sm:space-y-14">
           {features.map((feature, idx) => (
-            <Row key={idx} justify="center" className="px-4 md:px-12">
+            <Row key={idx} justify="left" className="px-4 md:px-12">
               <Col xs={24} md={20} lg={18} className="text-center md:text-left animate-fade-in">
                 <Title
                   level={3}
