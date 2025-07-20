@@ -24,7 +24,6 @@ import AboutUs from './screens/AboutUs';
 import TeacherSubmissions from './screens/TeacherSubmissions';
 import ForgotPassword from './screens/auth/ForgotPassword';
 import ResetPassword from './screens/auth/ResetPassword';
-import logo from './Images/AAcharya.png';
 
 function Header() {
   return (
@@ -89,7 +88,6 @@ function App() {
     >
       <AuthProvider>
         <Router>
-          <Header />
           <Navbar />
           <AppRoutes />
         </Router>
