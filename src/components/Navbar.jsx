@@ -103,8 +103,16 @@ const Navbar = () => {
                 placement="right"
                 onClose={() => setVisible(false)}
                 open={visible}
-                bodyStyle={{ padding: 0, background: '#3a1c71', color: 'white' }}
-                headerStyle={{ background: '#3a1c71', color: 'white' }}
+                styles={{
+                  body: {
+                    padding: 0, 
+                    background: 'linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b', 
+                    color: 'white' 
+                  },
+                  header:{
+                    background: 'linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b', 
+                    color: 'white' }
+                  }}
               >
                 {renderMenuItems()}
               </Drawer>
