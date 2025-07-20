@@ -72,7 +72,7 @@ const LandingPage = () => {
           </Paragraph>
 
           <Paragraph className="text-sm sm:text-lg text-gray-700 dark:text-gray-400 font-light leading-relaxed tracking-wide max-w-3xl mx-auto mt-6">
-          We help modern educators generate assignments, deliver guided hints, grade responses, and track student performance — all from one streamlined interface.
+          Modern educators can now generate assignments, deliver guided hints, grade responses, and track student performance — all from one streamlined interface.
           Whether you're in a classroom, tutoring center, or online program, Aacharya adapts to your style and scales with your needs.
           </Paragraph>
 

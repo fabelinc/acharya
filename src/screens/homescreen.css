@@ -24,7 +24,7 @@ body {
 
 /* Carousel */
 .carousel-fixed-height {
-  height: 300px;
+  height: 500px;
   overflow: hidden;
 }
 .carousel-fixed-height .slick-slide,
@@ -78,6 +78,6 @@ body {
 }
 
 img {
-  max-width: 20%;
+  max-width: 50%;
   display: block;
 }
