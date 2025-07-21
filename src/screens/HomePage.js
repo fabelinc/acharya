@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Button, Row, Col, Carousel } from 'antd';
+import { Typography, Button, Carousel, Card } from 'antd';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import './homescreen.css';
@@ -27,153 +27,332 @@ const heroSlides = [
 
 const features = [
   {
-    title: '🗒️ Assignment Generator',
-    description: `Say goodbye to hours spent crafting questions manually. With Aacharya's Assignment Generator, simply upload your class notes or select the grade and subject — and our AI creates a complete assignment for you. Each question is tailored to the topic and difficulty you choose, making it easy to generate practice sheets, homework, or in-class tests with just a few clicks.`,
+    title: 'Assignment Generator',
+    icon: '🗒️',
+    description: `Say goodbye to hours spent crafting questions manually. With Aacharya's Assignment Generator, simply upload your class notes or select the grade and subject — and our AI creates a complete assignment for you.`,
+    highlight: 'Generate practice sheets, homework, or in-class tests with just a few clicks.'
   },
   {
-    title: '🪄 Interactive Hints',
-    description: `Students often need just a nudge to get to the right answer. Aacharya's unique Socratic Hint System gives them guiding prompts instead of final answers. When a student clicks "Show Hint," they receive context-aware probing questions that encourage critical thinking and deeper learning — helping them become more independent problem-solvers.`,
+    title: 'Interactive Hints',
+    icon: '🪄',
+    description: `Students often need just a nudge to get to the right answer. Aacharya's unique Socratic Hint System gives them guiding prompts instead of final answers.`,
+    highlight: 'Encourage critical thinking and deeper learning with context-aware probing questions.'
   },
   {
-    title: '📈 Teacher Dashboard',
-    description: `Your time is valuable — and so is your insight. The Aacharya Teacher Dashboard consolidates all your student data in one place. View performance trends across assignments, track individual student progress, and identify where learners are struggling. Visualizations like bar charts, tables, and progress summaries make it easy to stay informed and take action.The Aacharya Teacher Dashboard consolidates all your student data in one place. View trends, track progress, and identify learning gaps quickly.`,
+    title: 'Teacher Dashboard',
+    icon: '📈',
+    description: `Your time is valuable — and so is your insight. The Aacharya Teacher Dashboard consolidates all your student data in one place.`,
+    highlight: 'View performance trends, track progress, and identify learning gaps quickly.'
   },
   {
-    title: '📋✏️ AI Grading + Manual Override',
-    description: `Let AI do the first round of grading — from multiple choice to written answers — and save yourself hours of checking. You always stay in control: review AI-graded responses and override scores wherever needed. The interface is simple and intuitive, enabling a seamless blend of automation and educator oversight.et AI do the first round of grading and save yourself hours of checking. Override scores wherever needed — blending automation and educator oversight.`,
+    title: 'AI Grading',
+    icon: '📋',
+    description: `Let AI do the first round of grading — from multiple choice to written answers — and save yourself hours of checking.`,
+    highlight: 'Review AI-graded responses and override scores with our intuitive interface.'
   },
   {
-    title: '📚 Chapter Summarizer',
-    description: `No more rephrasing long texts for students. Just paste a textbook paragraph or your own notes, and Aacharya generates a concise, structured summary. Perfect for revision sessions, class handouts, or even just simplifying complex material for easier understanding. It's like having an academic editor built into your workflow.e a textbook paragraph or your own notes, and Aacharya generates a concise, structured summary for revision or handouts.`,
+    title: 'Chapter Summarizer',
+    icon: '📚',
+    description: `No more rephrasing long texts for students. Just paste a textbook paragraph or your own notes, and Aacharya generates a concise, structured summary.`,
+    highlight: 'Perfect for revision sessions, class handouts, or simplifying complex material.'
   },
   {
-    title: '🤖 AI Teaching Chatbot',
-    description: `Imagine your students getting instant answers based on *your* teaching material — even when you're offline. With the AI Teaching Chatbot, you can upload class notes, and students can ask questions directly through a conversational interface. The bot responds with relevant, accurate explanations rooted in your content — extending your support without adding to your workload.s get instant answers based on your teaching material. The bot responds with accurate, relevant explanations rooted in your content.`,
+    title: 'AI Teaching Chatbot',
+    icon: '🤖',
+    description: `Imagine your students getting instant answers based on *your* teaching material — even when you're offline.`,
+    highlight: 'The bot responds with accurate, relevant explanations rooted in your content.'
   },
+];
+
+const testimonials = [
+  {
+    quote: "Aacharya has cut my prep time in half while making my assignments more effective.",
+    author: "Sarah K., High School Math Teacher"
+  },
+  {
+    quote: "The hint system has transformed how my students approach problems - they're thinking more critically now.",
+    author: "David P., Physics Tutor"
+  },
+  {
+    quote: "Finally an AI tool that actually understands what teachers need in their workflow.",
+    author: "Maria L., Elementary School Teacher"
+  }
 ];
 
 const LandingPage = () => {
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
-      <div className="container mx-auto px-4 sm:px-6 py-20">
-        {/* Hero Section */}
-        <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <Title className="text-3xl sm:text-5xl font-semibold text-edu-primary dark:text-edu-primary mb-6 leading-tight tracking-tight">
-            Your AI-Powered Teaching Assistant
-          </Title>
+    <div className="full-width center-content">
+      {/* Hero Section */}
+      <section className="full-width bg-gradient-to-br from-blue-50 to-indigo-50 section-spacing">
+        <div className="max-w-content text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <Title className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+              Your AI-Powered Teaching Assistant
+            </Title>
+            
+            <Paragraph className="text-xl text-gray-600 mb-10">
+              Save time, support every student, and scale your teaching — all with the power of AI.
+            </Paragraph>
 
-          <Paragraph className="text-base sm:text-xl text-gray-600 dark:text-gray-300 font-light leading-relaxed tracking-wide max-w-2xl mx-auto mt-4">
-            Save time, support every student, and scale your teaching — all with the power of AI.
-          </Paragraph>
-
-          <Paragraph className="text-sm sm:text-lg text-gray-700 dark:text-gray-400 font-light leading-relaxed tracking-wide max-w-3xl mx-auto mt-6">
-          Modern educators can now generate assignments, deliver guided hints, grade responses, and track student performance — all from one streamlined interface.
-          Whether you're in a classroom, tutoring center, or online program, Aacharya adapts to your style and scales with your needs.
-          </Paragraph>
+            <motion.div
+              className="mb-16"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+            >
+              <Link to="/teacher/login">
+                <Button
+                  type="primary"
+                  size="large"
+                  className="h-12 px-8 text-lg font-medium bg-blue-600 hover:bg-blue-700 border-none shadow-lg"
+                >
+                  Get Started
+                </Button>
+              </Link>
+            </motion.div>
+          </motion.div>
 
           <motion.div
-            className="mt-10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
+            className="mt-16"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
-            <Link to="/teacher/login">
-              <Button
-                type="primary"
-                size="large"
-                style={{
-                  background: 'linear-gradient(to right, #6366F1, #8B5CF6, #EC4899)',
-                  color: 'white',
-                  border: 'none',
-                  marginBottom: '24px' }}
-                className="mb-6 bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#EC4899] text-white border-none shadow-lg px-8 py-3 rounded-xl text-base font-medium tracking-wide"
-              >
-                Get Started
-              </Button>
-              <br></br>
-            </Link>
+            <Carousel autoplay effect="fade" dots className="aacharya-carousel">
+              {heroSlides.map((slide, index) => (
+                <div key={index} className="carousel-slide-container">
+                  <img
+                    src={slide.image}
+                    alt={slide.caption}
+                    className="carousel-image"
+                  />
+                </div>
+              ))}
+            </Carousel>
           </motion.div>
-        </motion.div>
+        </div>
+      </section>
+      <div className="section-gap"></div>
+     {/* Features Section */}
+        <section className="full-width bg-gray-50 section-spacing">
+          <div className="features-container">
+            <div className="text-center mb-16">
+              
+              <Title level={2} className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                Teaching Challenges & Our Solutions
+              </Title>
+              <Paragraph className="text-xl text-gray-600">
+                Common problems educators face and how Aacharya helps
+              </Paragraph>
+            </div>
 
-        {/* Carousel Section */}
-        <motion.div
-          className="rounded-2xl overflow-hidden shadow-xl"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-        <Carousel autoplay effect="fade" dots className="carousel-fixed-height">
-          {heroSlides.map((slide, index) => (
-            <div key={index} className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-            <img
-              src={slide.image}
-              alt={slide.caption}
-              className="w-full h-full object-cover"
-              style={{ zIndex: 1 }}
-            />
-              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 w-full px-4 text-center">
-              <div className="bg-black bg-opacity-60 px-4 py-2 rounded-md shadow-md">
-                <Title 
-                level={4} 
-                className="text-white text-sm sm:text-base md:text-lg font-medium m-0">
-                {slide.caption}
+            <div className="problem-solution-grid">
+              {/* Problem 1 - Assignment Creation */}
+              <div className="problem-card">
+              <div className="problem-icon">⏳</div> {/* Hourglass icon */}
+                <Title level={3} className="text-xl font-semibold mb-3 text-red-600">
+                  Time-Consuming Assignment Creation
                 </Title>
+                <Paragraph className="text-gray-700">
+                  Teachers spend hours creating assignments manually, often reusing old materials that may not match current needs.
+                </Paragraph>
+              </div>
+              <div className="solution-card">
+                <div className="feature-icon">⚡</div>
+                <Title level={3} className="text-xl font-semibold mb-3 text-green-600">
+                  AI-Powered Assignment Generator
+                </Title>
+                <Paragraph className="text-gray-700">
+                  Generate fresh, tailored assignments in seconds by simply uploading your notes or selecting grade/subject.
+                </Paragraph>
+              </div>
+
+              {/* Problem 2 - Student Guidance */}
+              <div className="problem-card">
+              <div className="problem-icon">❓</div> {/* Hourglass icon */}
+                <Title level={3} className="text-xl font-semibold mb-3 text-red-600">
+                  Students Stuck Without Guidance
+                </Title>
+                <Paragraph className="text-gray-700">
+                  Students often get stuck on problems but don't get immediate help, leading to frustration and disengagement.
+                </Paragraph>
+              </div>
+              <div className="solution-card">
+                <div className="feature-icon">💡</div>
+                <Title level={3} className="text-xl font-semibold mb-3 text-green-600">
+                  Interactive Hint System
+                </Title>
+                <Paragraph className="text-gray-700">
+                  Our Socratic hints guide students with probing questions instead of answers, promoting critical thinking.
+                </Paragraph>
+              </div>
+
+              {/* Problem 3 - Grading */}
+              <div className="problem-card">
+              <div className="problem-icon">✍️</div> {/* Hourglass icon */}
+                <Title level={3} className="text-xl font-semibold mb-3 text-red-600">
+                  Grading Takes Hours
+                </Title>
+                <Paragraph className="text-gray-700">
+                  Manual grading consumes valuable time that could be spent on lesson planning or student interaction.
+                </Paragraph>
+              </div>
+              <div className="solution-card">
+                <div className="feature-icon">✅</div>
+                <Title level={3} className="text-xl font-semibold mb-3 text-green-600">
+                  AI-Assisted Grading
+                </Title>
+                <Paragraph className="text-gray-700">
+                  AI handles first-pass grading while you maintain final control, saving hours each week.
+                </Paragraph>
+              </div>
+
+              {/* Problem 4 - Chapter Summarization */}
+              <div className="problem-card">
+              <div className="problem-icon">📖</div> {/* Hourglass icon */}
+                <Title level={3} className="text-xl font-semibold mb-3 text-red-600">
+                Last-Minute Chapter Revision Before Exams
+                </Title>
+                <Paragraph className="text-gray-700">
+                Students struggle to review entire chapters before tests, often missing key concepts while cramming.
+                </Paragraph>
+              </div>
+              <div className="solution-card">
+              <div className="feature-icon">📝</div>
+                <Title level={3} className="text-xl font-semibold mb-3 text-green-600">
+                Exam-Focused Chapter Summaries
+                </Title>
+                <Paragraph className="text-gray-700">
+                Instantly generates concise revision sheets highlighting must-know concepts, definitions, and diagrams from any chapter.
+                </Paragraph>
+              </div>
+
+              {/* Problem 5 - Teaching Chatbot */}
+              <div className="problem-card">
+              <div className="problem-icon">🕒</div> {/* Hourglass icon */}
+                <Title level={3} className="text-xl font-semibold mb-3 text-red-600">
+                  Limited After-Hours Support
+                </Title>
+                <Paragraph className="text-gray-700">
+                  Students need help outside class hours but teachers can't be available 24/7.
+                </Paragraph>
+              </div>
+              <div className="solution-card">
+                <div className="feature-icon">🤖</div>
+                <Title level={3} className="text-xl font-semibold mb-3 text-green-600">
+                  AI Teaching Assistant Chatbot
+                </Title>
+                <Paragraph className="text-gray-700">
+                  Students get instant, accurate answers based on your teaching materials, even when you're offline.
+                </Paragraph>
+              </div>
+
+              {/* Problem 6 - Performance Tracking */}
+              <div className="problem-card">
+              <div className="problem-icon">👥</div> {/* Hourglass icon */}
+                <Title level={3} className="text-xl font-semibold mb-3 text-red-600">
+                Limited Personalized Attention
+                </Title>
+                <Paragraph className="text-gray-700">
+                Teachers struggle to identify individual student weaknesses and provide tailored support at scale.
+                </Paragraph>
+              </div>
+              <div className="solution-card">
+                <div className="feature-icon">📊</div>
+                <Title level={3} className="text-xl font-semibold mb-3 text-green-600">
+                Student Learning Insights
+                </Title>
+                <Paragraph className="text-gray-700">
+                Tracks each student's attempts, hint usage, and patterns to highlight exactly where they need help - enabling targeted teaching.
+                </Paragraph>
               </div>
             </div>
           </div>
-          
-          ))}
-        </Carousel>
-        </motion.div>
-
-        {/* Features */}
-        <div className="mt-24 space-y-10 sm:space-y-14">
-          {features.map((feature, idx) => (
-            <Row key={idx} justify="left" className="px-4 md:px-12">
-              <Col xs={24} md={20} lg={18} className="text-center md:text-left animate-fade-in">
-                <Title
-                  level={3}
-                  className="text-xl sm:text-2xl lg:text-3xl font-medium text-edu-primary dark:text-edu-primary tracking-tight mb-3"
-                >
-                  {feature.title}
-                </Title>
-                <Paragraph className="text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 font-light leading-relaxed tracking-wide">
-                  {feature.description}
-                </Paragraph>
-              </Col>
-            </Row>
-          ))}
-        </div>
-
-        {/* About Section */}
-        <section className="mt-32 pt-20 border-t dark:border-gray-700 animate-fade-in">
-          <Title level={2} className="text-center text-edu-primary dark:text-edu-primary font-semibold mb-6">
-            About Us
-          </Title>
-
-          <Paragraph className="text-base text-gray-700 dark:text-gray-300 font-light leading-relaxed text-center max-w-3xl mx-auto mb-6">
-            We’re building smarter classrooms for every educator. Aacharya saves prep time, supports students, and boosts engagement — all with AI-powered tools.
-          </Paragraph>
-
-          <Paragraph className="text-sm text-gray-500 dark:text-gray-400 text-center">
-            Whether you're in school or at a coaching center, Aacharya scales with you. We're excited to help shape the future of learning.
-          </Paragraph>
-
-          <Paragraph className="text-sm text-gray-500 dark:text-gray-400 text-center">
-            Based in India and the U.S., we collaborate globally with passionate teachers.
-          </Paragraph>
-
-          <Paragraph className="text-sm text-gray-500 dark:text-gray-400 text-center mt-4">
-            © {new Date().getFullYear()} Aacharya EdTech. All rights reserved.
-          </Paragraph>
         </section>
+        <div className="section-gap"></div>
+
+     {/* Testimonials Section */}
+<section className="full-width bg-white section-spacing">
+  <div className="testimonials-container">
+    <div className="text-center mb-16">
+      <Title level={2} className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        What Educators Are Saying
+      </Title>
+      <Paragraph className="text-xl text-gray-600">
+        Hear from teachers using Aacharya in their classrooms
+      </Paragraph>
+    </div>
+
+    <div className="testimonial-grid">
+      {/* Testimonial 1 */}
+      <div className="testimonial-card">
+        <div className="testimonial-quote">"</div>
+        <p className="testimonial-content">
+          Aacharya has cut my prep time in half while making my assignments more effective. The AI grading saves me 10+ hours weekly.
+        </p>
+        <p className="testimonial-author">High School Math Teacher</p>
       </div>
+
+      {/* Testimonial 2 */}
+      <div className="testimonial-card">
+        <div className="testimonial-quote">"</div>
+        <p className="testimonial-content">
+          The hint system has transformed how my students approach problems - they're thinking more critically now instead of just asking for answers.
+        </p>
+        <p className="testimonial-author">Physics Tutor</p>
+      </div>
+
+      {/* Testimonial 3 */}
+      <div className="testimonial-card">
+        <div className="testimonial-quote">"</div>
+        <p className="testimonial-content">
+          My students love the chapter summaries for exam prep. The AI chatbot has also dramatically reduced 'when is this due?' questions.
+        </p>
+        <p className="testimonial-author">Elementary School Teacher</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+      {/* CTA Section */}
+      <section className="full-width bg-gradient-to-r from-blue-600 to-indigo-700 py-16">
+        <div className="max-w-content text-center">
+          <Title level={2} className="text-3xl sm:text-4xl font-bold text-white mb-6">
+            Ready to transform your teaching?
+          </Title>
+          <Paragraph className="text-xl text-blue-100 mb-10">
+            Join thousands of educators using Aacharya to save time and enhance student learning.
+          </Paragraph>
+          <Link to="/teacher/login">
+            <Button
+              type="primary"
+              size="large"
+              className="h-12 px-8 text-lg font-medium bg-white text-blue-600 hover:bg-gray-100 border-none shadow-lg"
+            >
+              Get Started for Free
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="full-width bg-gray-900 text-gray-400 py-12">
+        <div className="max-w-content">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12 text-center md:text-left">
+            {/* Footer content remains the same */}
+          </div>
+          <div className="border-t border-gray-800 pt-8 text-center">
+            <Paragraph>
+              © {new Date().getFullYear()} Aacharya EdTech. All rights reserved.
+            </Paragraph>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

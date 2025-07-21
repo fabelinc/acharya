@@ -1,3 +1,4 @@
+/* Reset and Base Styles */
 :root {
   --edu-primary: #4f46e5;
   --edu-primary-dark: #4338ca;
@@ -12,80 +13,229 @@
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0;
+  padding: 0;
+  color: var(--text-primary);
+  background-color: #ffffff;
 }
 
-/* Container */
-.container {
-  max-width: 800px;
+/* Layout Utilities */
+.full-width {
+  width: 100%;
+}
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.max-w-content {
+  max-width: 80rem; /* 1280px */
+  width: 100%;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-/* Carousel */
-.carousel-fixed-height {
-  height: 500px;
+/* Spacing Utilities */
+.mb-16 {
+  margin-bottom: 2rem;
+}
+
+.mt-16 {
+  margin-top: 2rem;
+}
+
+.py-16 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Carousel Styles */
+.aacharya-carousel {
+  height: 800px;
   overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 
+              0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  position: relative;
 }
 
-@media (max-width: 480px) {
-  .carousel-fixed-height {
-    height: 250px; /* or whatever fits better on mobile */
-  }
+.aacharya-carousel .slick-slide,
+.aacharya-carousel .slick-slide > div {
+  height: 100%;
 }
 
-.carousel-fixed-height .slick-slide,
-.carousel-fixed-height .slick-slide > div {
-  height: 100% !important;
+.aacharya-carousel .carousel-slide-container {
+  height: 100%;
+  width: 100%;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8fafc;
 }
-.carousel-image {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover;
-  z-index: 1;
-  display: block;
+
+.aacharya-carousel img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+/* Remove captions */
+.aacharya-carousel .ant-carousel .slick-slide .caption-container {
+  display: none;
 }
 
 /* Ant Design Overrides */
 .ant-carousel .slick-dots li button {
-  background: #fff;
-  opacity: 0.4;
+  background: #fff !important;
+  opacity: 0.4 !important;
 }
+
 .ant-carousel .slick-dots li.slick-active button {
-  opacity: 1;
-  background: var(--edu-primary);
-}
-.ant-btn-primary {
-  background: var(--edu-primary);
-  border-color: var(--edu-primary);
-}
-.ant-btn-primary:hover {
-  background: var(--edu-primary-dark);
-  border-color: var(--edu-primary-dark);
+  opacity: 1 !important;
+  background: var(--edu-primary) !important;
 }
 
-/* Animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
+.ant-card {
+  border-radius: var(--border-radius) !important;
+  transition: var(--transition) !important;
 }
 
-/* Utility */
-.shadow-lg {
+/* Feature Cards */
+.feature-card {
+  max-width: 400px;
+  text-align: center;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
               0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
-.hover-scale {
-  transition: transform 0.3s ease;
-}
-.hover-scale:hover {
-  transform: scale(1.03);
+
+/* Features Section */
+.features-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-img {
-  max-width: 50%;
-  display: block;
+.problem-solution-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+}
+
+.problem-card {
+  background-color: #fef2f2;
+  border-left: 4px solid #ef4444;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.solution-card {
+  background-color: #f0fdf4;
+  border-left: 4px solid #10b981;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Add to your existing CSS */
+.problem-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #ef4444; /* Red-500 */
+}
+
+.solution-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #10b981; /* Green-500 */
+}
+
+@media (max-width: 768px) {
+  .problem-solution-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .aacharya-carousel {
+    height: 350px;
+  }
+  
+  .feature-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .aacharya-carousel {
+    height: 250px;
+  }
+  
+  .mb-16, .mt-16, .py-16 {
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+/* Testimonials Section */
+.testimonials-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  width: 100%;
+}
+
+.testimonial-card {
+  padding: 2rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+}
+
+.testimonial-quote {
+  font-size: 3rem;
+  line-height: 1;
+  color: #e5e7eb;
+  margin-bottom: 1rem;
+}
+
+.testimonial-content {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-author {
+  font-weight: 600;
+  color: #111827;
+}
+
+@media (max-width: 768px) {
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
 }

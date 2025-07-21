@@ -78,7 +78,7 @@ const Navbar = () => {
               src={logo}
               alt="Aacharya Logo"
               style={{
-                height: '100px', 
+                height: '70px', 
                 objectFit: 'contain',
                 background: 'transparent',
               }}
