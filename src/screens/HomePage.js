@@ -84,7 +84,7 @@ const LandingPage = () => {
     <div className="full-width center-content">
       {/* Hero Section */}
       <section className="full-width bg-gradient-to-br from-blue-50 to-indigo-50 section-spacing">
-        <div className="max-w-content text-center">
+        <div className="max-w-content mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -137,10 +137,12 @@ const LandingPage = () => {
           </motion.div>
         </div>
       </section>
+      
       <div className="section-gap"></div>
+
      {/* Features Section */}
         <section className="full-width bg-gray-50 section-spacing">
-          <div className="features-container">
+          <div className="max-w-content mx-auto">
             <div className="text-center mb-16">
               
               <Title level={2} className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
@@ -278,7 +280,7 @@ const LandingPage = () => {
 
      {/* Testimonials Section */}
 <section className="full-width bg-white section-spacing">
-  <div className="testimonials-container">
+  <div className="max-w-content mx-auto">
     <div className="text-center mb-16">
       <Title level={2} className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
         What Educators Are Saying

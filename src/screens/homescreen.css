@@ -164,8 +164,21 @@ body {
 }
 
 @media (max-width: 768px) {
+  .section-spacing {
+    padding-top: 1.5rem; /* Reduced from 3rem */
+    padding-bottom: 1.5rem;
+  }
+  
+  .section-gap {
+    margin-bottom: 1rem; /* Reduced from 2rem */
+  }
+
   .problem-solution-grid {
     grid-template-columns: 1fr;
+  }
+  /* Testimonials mobile spacing */
+  .testimonial-grid {
+    gap: 1.5rem;
   }
 }
 
