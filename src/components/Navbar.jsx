@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, Layout, Drawer, Button } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '../Images/AAcharya_logo.png';
+import logo from '../Images/aacharya_logo2.png';
 
 const { Header } = Layout;
 
@@ -73,19 +73,17 @@ const Navbar = () => {
           }}
         >
           {/* Logo */}
-          <Link to="/" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', height: '580%', justifyContent: 'flex-start' }}>
+          <Link to="/" style={{ display: 'inline-flex', alignItems: 'center' }}>
             <img
               src={logo}
               alt="Aacharya Logo"
               style={{
-                height: '400px',
+                height: '100px', 
                 objectFit: 'contain',
                 background: 'transparent',
               }}
             />
-          
           </Link>
-
           {/* Desktop Menu */}
           {!isMobile && (
             <div style={{ display: 'flex', gap: 16 }}>{renderMenuItems()}</div>
