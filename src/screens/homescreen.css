@@ -11,10 +11,25 @@
   --transition: all 0.2s ease-in-out;
 }
 
+/* Box sizing reset */
+html {
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   margin: 0;
   padding: 0;
+  width: 100%;
+  overflow-x: hidden;
   color: var(--text-primary);
   background-color: #ffffff;
 }
@@ -51,9 +66,13 @@ body {
   padding-bottom: 1rem;
 }
 
-/* Carousel Styles */
+/* Carousel Styles - Fixed Overflow */
 .aacharya-carousel {
-  height: 800px;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  min-height: 300px;
+  max-height: 800px;
   overflow: hidden;
   border-radius: 1rem;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 
@@ -64,6 +83,7 @@ body {
 .aacharya-carousel .slick-slide,
 .aacharya-carousel .slick-slide > div {
   height: 100%;
+  width: 100%;
 }
 
 .aacharya-carousel .carousel-slide-container {
@@ -76,14 +96,9 @@ body {
 }
 
 .aacharya-carousel img {
-  height: 100%;
   width: 100%;
-  object-fit: contain;
-}
-
-/* Remove captions */
-.aacharya-carousel .ant-carousel .slick-slide .caption-container {
-  display: none;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Ant Design Overrides */
@@ -105,10 +120,12 @@ body {
 /* Feature Cards */
 .feature-card {
   max-width: 400px;
+  width: 100%;
   text-align: center;
   padding: 1.5rem;
   border: 1px solid #e5e7eb;
   transition: all 0.3s ease;
+  margin: 0 auto;
 }
 
 .feature-card:hover {
@@ -122,6 +139,7 @@ body {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .problem-solution-grid {
@@ -150,60 +168,16 @@ body {
   margin-bottom: 1rem;
 }
 
-/* Add to your existing CSS */
 .problem-icon {
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: #ef4444; /* Red-500 */
+  color: #ef4444;
 }
 
 .solution-icon {
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: #10b981; /* Green-500 */
-}
-
-@media (max-width: 768px) {
-  .section-spacing {
-    padding-top: 1.5rem; /* Reduced from 3rem */
-    padding-bottom: 1.5rem;
-  }
-  
-  .section-gap {
-    margin-bottom: 1rem; /* Reduced from 2rem */
-  }
-
-  .problem-solution-grid {
-    grid-template-columns: 1fr;
-  }
-  /* Testimonials mobile spacing */
-  .testimonial-grid {
-    gap: 1.5rem;
-  }
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .aacharya-carousel {
-    height: 350px;
-  }
-  
-  .feature-card {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .aacharya-carousel {
-    height: 250px;
-  }
-  
-  .mb-16, .mt-16, .py-16 {
-    margin-bottom: 2rem;
-    margin-top: 2rem;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
+  color: #10b981;
 }
 
 /* Testimonials Section */
@@ -211,11 +185,12 @@ body {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .testimonial-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   width: 100%;
 }
@@ -247,8 +222,55 @@ body {
   color: #111827;
 }
 
+/* Responsive Adjustments */
 @media (max-width: 768px) {
+  .section-spacing {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  
+  .section-gap {
+    margin-bottom: 0rem;
+  }
+
+  .aacharya-carousel {
+    max-height: 350px;
+  }
+
   .testimonial-grid {
-    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
+
+@media (max-width: 768px) {
+  .problem-solution-grid {
+    grid-template-columns: 1fr; /* Stack on mobile */
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .aacharya-carousel {
+    max-height: 250px;
+  }
+  
+  .mb-16, .mt-16, .py-16 {
+    margin-bottom: 0rem;
+    margin-top: 1rem;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+  }
+
+  .feature-card {
+    padding: 0rem;
+  }
+}
+
+/* Emergency Overflow Fix (if needed) */
+/* Uncomment only if specific elements still overflow */
+/*
+.overflow-guard {
+  width: 100%;
+  overflow: hidden;
+}
+*/
