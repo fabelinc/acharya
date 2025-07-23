@@ -15,7 +15,7 @@
 html {
   box-sizing: border-box;
   width: 100%;
-  overflow-x: hidden;
+ 
 }
 
 *,
@@ -29,7 +29,6 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
-  overflow-x: hidden;
   color: var(--text-primary);
   background-color: #ffffff;
 }
@@ -265,12 +264,3 @@ body {
     padding: 0rem;
   }
 }
-
-/* Emergency Overflow Fix (if needed) */
-/* Uncomment only if specific elements still overflow */
-/*
-.overflow-guard {
-  width: 100%;
-  overflow: hidden;
-}
-*/

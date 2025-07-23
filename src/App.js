@@ -24,14 +24,7 @@ import AboutUs from './screens/AboutUs';
 import TeacherSubmissions from './screens/TeacherSubmissions';
 import ForgotPassword from './screens/auth/ForgotPassword';
 import ResetPassword from './screens/auth/ResetPassword';
-
-function Header() {
-  return (
-    <header>
-      <img src={logo} alt="Aacharya Logo" style={{ height: '50px' }} />
-    </header>
-  );
-}
+import Footer from './components/Footer';
 
 
 // 🧠 Subcomponent to use AuthContext safely
@@ -88,13 +81,20 @@ function App() {
     >
       <AuthProvider>
         <Router>
-          <Navbar />
-          <AppRoutes />
+          {/* Layout Wrapper */}
+          <div className="min-h-screen flex flex-col">
+            <Navbar />
+            
+            {/* Main Content Area - grows to push footer down */}
+            <main className="flex-grow">
+              <AppRoutes />
+            </main>
+            <Footer />
+          </div>
         </Router>
       </AuthProvider>
       <Analytics />
     </ConfigProvider>
-    
   );
 }
 

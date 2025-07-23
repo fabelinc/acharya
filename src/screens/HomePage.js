@@ -341,20 +341,7 @@ const LandingPage = () => {
           </Link>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="full-width bg-gray-900 text-gray-400 py-12">
-        <div className="max-w-content">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12 text-center md:text-left">
-            {/* Footer content remains the same */}
-          </div>
-          <div className="border-t border-gray-800 pt-8 text-center">
-            <Paragraph>
-              © {new Date().getFullYear()} Aacharya EdTech. All rights reserved.
-            </Paragraph>
-          </div>
-        </div>
-      </footer>
+    
     </div>
   );
 };
