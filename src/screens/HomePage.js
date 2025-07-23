@@ -145,11 +145,11 @@ const LandingPage = () => {
           <div className="max-w-content mx-auto">
             <div className="text-center mb-16">
               
-              <Title level={2} className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                Teaching Challenges & Our Solutions
+              <Title level={2} className="text-2xl sm:text-4xl font-bold text-gray-900 mb-4">
+              Why Teaching Is Hard — And How Aacharya Helps
               </Title>
               <Paragraph className="text-xl text-gray-600">
-                Common problems educators face and how Aacharya helps
+              Explore common educator pain points and how Aacharya transforms the experience.
               </Paragraph>
             </div>
 
