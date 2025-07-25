@@ -264,3 +264,15 @@ body {
     padding: 0rem;
   }
 }
+
+/* Force footer grid layout */
+footer .grid {
+  display: grid !important;
+  grid-template-columns: repeat(1, 1fr) !important;
+}
+
+@media (min-width: 768px) {
+  footer .grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
