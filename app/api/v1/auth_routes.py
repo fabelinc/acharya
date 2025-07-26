@@ -33,28 +33,22 @@ router = APIRouter(prefix="/auth", tags=["auth"])
 
 @router.post("/signup")
 def signup(
-    name: str = Form(...),
-    email: str = Form(...),
-    password: str = Form(...),
+    teacher: TeacherSignup,  # this will accept JSON
     db: Session = Depends(get_db)
 ):
-    # Normalize email
-    email = email.lower()
+    email = teacher.email.lower()
 
-    # Check if email already exists
     if db.query(Teacher).filter(Teacher.email == email).first():
         raise HTTPException(status_code=400, detail="Email is already registered.")
 
-    # Create new teacher object
     new_teacher = Teacher(
         id=uuid.uuid4(),
-        name=name,
+        name=teacher.name,
         email=email,
-        hashed_password=get_password_hash(password),
+        hashed_password=get_password_hash(teacher.password),
         created_at=datetime.now(timezone.utc),
     )
 
-    # Insert into database
     try:
         db.add(new_teacher)
         db.commit()
