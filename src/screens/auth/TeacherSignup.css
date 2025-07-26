@@ -1,0 +1,62 @@
+/* TeacherSignup.css */
+.signup-container {
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .signup-card {
+    transition: all 0.3s ease;
+  }
+  
+  .title-animation {
+    animation: slideInDown 0.5s ease-out;
+  }
+  
+  .input-animation {
+    transition: all 0.3s ease;
+  }
+  
+  .input-animation:focus {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+  }
+  
+  .submit-button {
+    transition: all 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .success-animation {
+    animation: pulse 1s ease;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+  }
+  
+  .success-message {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .success-icon {
+    font-size: 60px;
+    color: #52c41a;
+    animation: bounceIn 0.8s ease;
+  }
+  
+  @keyframes bounceIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); }
+  }
