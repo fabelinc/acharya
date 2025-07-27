@@ -267,6 +267,7 @@ body {
 
 /* Force footer grid layout */
 footer .grid {
+  max-height: 20px;
   display: grid !important;
   grid-template-columns: repeat(1, 1fr) !important;
 }
@@ -276,3 +277,13 @@ footer .grid {
     grid-template-columns: repeat(3, 1fr) !important;
   }
 }
+
+@media (max-width: 480px) {
+  footer .grid {
+    max-height: 100px;
+    height: 100%;
+    width: 100%;
+    display: flex !important;
+    align-items: center;
+ 
+  }}

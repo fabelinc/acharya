@@ -32,7 +32,6 @@ export default function TeacherSignup() {
       
       // Success animation will play for 2 seconds before navigating
       setTimeout(() => {
-        message.success('Signup successful! You can now login.');
         navigate('/teacher/login');
       }, 2000);
     } catch (err) {
@@ -52,7 +51,7 @@ export default function TeacherSignup() {
           <div className="success-message">
             <CheckCircleOutlined className="success-icon" />
             <Title level={3} style={{ textAlign: 'center', marginTop: 20 }}>
-              Signup Successful!
+              Signup Successful! You can now login.
             </Title>
           </div>
         ) : (

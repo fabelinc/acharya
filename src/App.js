@@ -82,11 +82,15 @@ function App() {
       <AuthProvider>
         <Router>
           {/* Layout Wrapper */}
-          <div className="min-h-screen flex flex-col">
+          <div style={{ 
+      display: 'flex',
+      flexDirection: 'column',
+      minHeight: '100vh'
+    }}>
             <Navbar />
             
             {/* Main Content Area - grows to push footer down */}
-            <main className="flex-grow">
+            <main style={{ flex: 1 }}>
               <AppRoutes />
             </main>
             <Footer />

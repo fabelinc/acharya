@@ -7,7 +7,8 @@ const Footer = () => {
       style={{
         background: 'linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b)',
         boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
-        color: 'white'
+        color: 'white',
+        marginTop: '0.5rem' 
       }}
       className="pt-8 pb-6 px-4 sm:px-6"
     >
@@ -15,7 +16,7 @@ const Footer = () => {
         {/* Top Section: 3 Columns */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start text-center md:text-left mt-6">
           {/* Left: Logo */}
-          <div style={{ display: 'flex', gap: 16, padding: 20 }}>
+          <div style={{ display: 'flex', gap: 16, padding: 18 }}>
             <img
               src="/favicon-32x32.png"
               alt="Your Logo"
@@ -65,12 +66,14 @@ const Footer = () => {
         </div>
 
         {/* Bottom: Copyright */}
-        <div className="mt-8 text-center">
+      <div className="max-w-6xl w-full mx-auto">
+        <div style={{ display: 'flex', gap: 16, padding: 30 }}>
           <p className="text-white text-opacity-70 text-xs">
             © {new Date().getFullYear()} Fabel, Inc. All rights reserved.
           </p>
         </div>
       </div>
+    </div>
     </footer>
   );
 };

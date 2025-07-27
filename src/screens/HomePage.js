@@ -322,7 +322,7 @@ const LandingPage = () => {
 </section>
 
       {/* CTA Section */}
-      <section className="full-width bg-gradient-to-r from-blue-600 to-indigo-700 py-16">
+      <section className="ctagrid full-width bg-gradient-to-r from-blue-600 to-indigo-700 py-16">
         <div className="max-w-content text-center">
           <Title level={2} className="text-3xl sm:text-4xl font-bold text-white mb-6">
             Ready to transform your teaching?
