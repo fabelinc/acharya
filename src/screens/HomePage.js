@@ -9,19 +9,19 @@ const { Title, Text, Paragraph } = Typography;
 const heroSlides = [
   {
     image: require('../Images/assignment-generate.png'),
-    caption: 'Generate Assignments in Seconds',
+    caption: 'Create Assignments Instantly',
   },
   {
     image: require('../Images/Hints.jpg'),
-    caption: 'Guide Students with Hints, Not Answers',
+    caption: 'Empower Students with Guided Hints',
   },
   {
     image: require('../Images/ai_grading.png'),
-    caption: 'Review submissions and AI generated grades',
+    caption: 'Review Work with AI‑Drafted Grades',
   },
   {
     image: require('../Images/chapter_summary.png'),
-    caption: 'Summarize chapters for students revision',
+    caption: 'Turn Chapters into Quick‑Read Summaries',
   },
 ];
 
@@ -126,12 +126,15 @@ const LandingPage = () => {
             <Carousel autoplay effect="fade" dots className="aacharya-carousel">
               {heroSlides.map((slide, index) => (
                 <div key={index} className="carousel-slide-container">
-                  <img
-                    src={slide.image}
-                    alt={slide.caption}
-                    className="carousel-image"
-                  />
+                <img
+                  src={slide.image}
+                  alt={slide.caption}
+                  className="carousel-image"
+                />
+                <div className="carousel-caption" style={{ top: 40, right: 10 }}>
+                  {slide.caption}
                 </div>
+              </div>
               ))}
             </Carousel>
           </motion.div>

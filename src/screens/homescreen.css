@@ -287,3 +287,26 @@ footer .grid {
     align-items: center;
  
   }}
+
+  .carousel-slide-container {
+    position: relative;
+    display: inline-block; /* or flex, depending on your layout */
+  }
+  
+  .carousel-caption {
+    position: absolute;
+    right: 40px; /* Adjust as needed */
+    top: 70%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 
+      1px 1px 3px rgba(0, 0, 0, 0.8),
+      -1px -1px 3px rgba(0, 0, 0, 0.8),
+      1px -1px 3px rgba(0, 0, 0, 0.8),
+      -1px 1px 3px rgba(0, 0, 0, 0.8);
+    max-width: 40%;
+    text-align: left;
+    padding: 12px;
+  }
