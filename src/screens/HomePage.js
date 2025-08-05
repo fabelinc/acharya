@@ -16,7 +16,7 @@ const heroSlides = [
     caption: 'Guide Students with Hints, Not Answers',
   },
   {
-    image: require('../Images/ai_grading.jpg'),
+    image: require('../Images/ai_grading.png'),
     caption: 'Review submissions and AI generated grades',
   },
   {
