@@ -8,7 +8,7 @@ const { Title, Text, Paragraph } = Typography;
 
 const heroSlides = [
   {
-    image: require('../Images/Assignment.png'),
+    image: require('../Images/assignment-generate.png'),
     caption: 'Generate Assignments in Seconds',
   },
   {
@@ -16,11 +16,11 @@ const heroSlides = [
     caption: 'Guide Students with Hints, Not Answers',
   },
   {
-    image: require('../Images/AI Grading.jpg'),
+    image: require('../Images/ai_grading.jpg'),
     caption: 'Review submissions and AI generated grades',
   },
   {
-    image: require('../Images/summary.png'),
+    image: require('../Images/chapter_summary.png'),
     caption: 'Summarize chapters for students revision',
   },
 ];
